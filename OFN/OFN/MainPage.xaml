@@ -11,7 +11,7 @@
     <Grid>
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="1920" Height="50" Text="Ordered Fuzzy Number A" TextAlignment="Center" FontSize="20"/>
+                <TextBlock Width="1920" Height="50" Text="Ordered Fuzzy Number A" TextAlignment="Center" FontSize="20"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
@@ -20,7 +20,7 @@
                 <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="1920" Height="50" Text="Ordered Fuzzy Number B" TextAlignment="Center" FontSize="20"/>
+                <TextBlock Width="1920" Height="50" Text="Ordered Fuzzy Number B" TextAlignment="Center" FontSize="20"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
@@ -37,11 +37,32 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <Canvas Width="1920" Height="780">
+                <Canvas Width="1920" Height="380">
                     
                 </Canvas>
             </StackPanel>
-            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="1920" Height="50" Text="Polynomial Fuzzy Number" TextAlignment="Center" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Up Fuzzy Number 1" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Up Fuzzy Number 2" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Up Result" FontSize="15"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Down Fuzzy Number 1" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Down Fuzzy Number 2" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Down Result" FontSize="15"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Width="1920" Height="50" Text="Operations" TextAlignment="Center" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="384" Height="60" Content="+" FontSize="40"/>
+                <Button Width="384" Height="60" Content="-" FontSize="40"/>
+                <Button Width="384" Height="60" Content="*" FontSize="40"/>
+                <Button Width="384" Height="60" Content="/" FontSize="40"/>
+            </StackPanel>
         </StackPanel>
         
         

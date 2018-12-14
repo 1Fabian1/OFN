@@ -33,5 +33,8 @@ namespace OFN
         public double Pos2 { get => pos2; set => pos2 = value; }
         public double Pos3 { get => pos3; set => pos3 = value; }
         public double Pos4 { get => pos4; set => pos4 = value; }
+
+
+
     }
 }
