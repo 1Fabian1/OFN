@@ -9,6 +9,43 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="1920" Height="50" Text="Ordered Fuzzy Number A" TextAlignment="Center" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="1920" Height="50" Text="Ordered Fuzzy Number B" TextAlignment="Center" FontSize="20"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15"/>
+                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="384" Height="60" Content="A + B" FontSize="40"/>
+                <Button Width="384" Height="60" Content="A - B" FontSize="40"/>
+                <Button Width="384" Height="60" Content="A * B" FontSize="40"/>
+                <Button Width="384" Height="60" Content="A / B" FontSize="40"/>
+                <Button Width="384" Height="60" Content="TEST" FontSize="40"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Canvas Width="1920" Height="780">
+                    
+                </Canvas>
+            </StackPanel>
+            
+        </StackPanel>
+        
+        
+        
 
     </Grid>
 </Page>
