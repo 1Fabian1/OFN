@@ -34,7 +34,7 @@ namespace OFN
             Debug.WriteLine("f2: " + f2.ToString());
             result = FNAlgebra.divideAB(f1, f2);
             Debug.WriteLine("result: " + result.ToString());
-            Debug.WriteLine("Fabian");
+            Debug.WriteLine("Fabianngita");
         }
     }
 }
