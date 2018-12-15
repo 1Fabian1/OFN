@@ -27,7 +27,7 @@ namespace OFN
         {
             this.InitializeComponent();
             Debug.WriteLine("Trochę działań - podgląd w debugu");
-            FuzzyNumber f1 = new FuzzyNumber(1, 2, 30, 0);
+            FuzzyNumber f1 = new FuzzyNumber(1, 2, 30, 1);
             FuzzyNumber f2 = new FuzzyNumber(1, 2, 3, 4);
             FuzzyNumber result = new FuzzyNumber(0, 0, 0, 0);
             Debug.WriteLine("f1: " + f1.ToString());

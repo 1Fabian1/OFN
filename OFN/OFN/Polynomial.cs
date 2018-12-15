@@ -29,6 +29,8 @@ namespace OFN
 
         private void Calculate(char znak)
         {
+
+            //TO DO: Podaj stopien wielomianu, usunac StringBuilder, wyedytowac pole 
             StringBuilder builder = new StringBuilder("(" + upFN1 + ")" + znak + "(" + upFN2 +")");
             if (znak.Equals("+"))
             {
