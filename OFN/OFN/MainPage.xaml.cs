@@ -34,6 +34,7 @@ namespace OFN
             Debug.WriteLine("f2: " + f2.ToString());
             result = FNAlgebra.divideAB(f1, f2);
             Debug.WriteLine("result: " + result.ToString());
+<<<<<<< HEAD
             Debug.WriteLine("Fabianngita1");
 
             Debug.WriteLine("Test: emsky branch");
@@ -44,6 +45,9 @@ namespace OFN
             Debug.WriteLine("Emsky 19:43");
             Debug.WriteLine("Emsky 19:45");
             Debug.WriteLine("Emsky 19:56");
+=======
+
+>>>>>>> a3dde68... Clean project
         }
     }
 }
