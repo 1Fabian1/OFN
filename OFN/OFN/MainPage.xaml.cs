@@ -34,19 +34,6 @@ namespace OFN
             Debug.WriteLine("f2: " + f2.ToString());
             result = FNAlgebra.divideAB(f1, f2);
             Debug.WriteLine("result: " + result.ToString());
-            Debug.WriteLine("Fabianngita1");
-
-            Debug.WriteLine("Test: emsky branch");
-            Debug.WriteLine("Test merge.emsky");
-            Debug.WriteLine("Test 19:28");
-
-            Debug.WriteLine("Fabian 19:39");
-            Debug.WriteLine("Emsky 19:43");
-            Debug.WriteLine("Emsky 19:45");
-
-            Debug.WriteLine("Emsky 19:56");
-
-            Debug.WriteLine("Fabian 19.56");
 
         }
     }
