@@ -34,11 +34,10 @@ namespace OFN
             Debug.WriteLine("f2: " + f2.ToString());
             result = FNAlgebra.divideAB(f1, f2);
             Debug.WriteLine("result: " + result.ToString());
-<<<<<<< HEAD
+
             Debug.WriteLine("Test: emsky branch");
             Debug.WriteLine("Test merge.emsky");
-=======
->>>>>>> e2dfd8fe02b7f113a0f71e617e5bf4f3adbef71a
+            Debug.WriteLine("Test 19:28");
         }
     }
 }
