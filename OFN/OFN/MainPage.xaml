@@ -8,7 +8,43 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid">
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="FirstGrid"  Grid.Row="0" Background="#eefefe">
+            <TextBlock Margin="10,10,0,0"  Text="Ordered Fuzzy Number A" FontSize="15"/>
+            <TextBox Name="textBox1LA" Margin="10,30,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
+            <TextBox Name="textBox2mA" Margin="140,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15"/>
+            <TextBox Name="textBoxk3pA" Margin="270,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15"/>
+            <TextBox Name="textBox4PA" Margin="400,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15"/>
+            <TextBlock Margin="10,110,0,0"  Text="Ordered Fuzzy Number B" FontSize="15"/>
+            <TextBox Name="textBox1LB" Margin="10,130,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
+            <TextBox Name="textBox2mB" Margin="140,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15"/>
+            <TextBox Name="textBox3pB" Margin="270,130,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15"/>
+            <TextBox Name="textBox4PB" Margin="400,130,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15"/>
+            <Button Name="buttonAdd" Click="ButtonAdd_Click" Margin="10,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="A + B" FontSize="40"/>
+            <Button Name="buttonSubtract" Click="ButtonSubtract_Click"  Margin="140,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="A - B" FontSize="40"/>
+            <Button Name="buttonMultiply" Click="ButtonMultiply_Click" Margin="270,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="A * B" FontSize="40"/>
+            <Button Name="buttonDivide" Click="ButtonDivide_Click" Margin="400,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="A / B" FontSize="40"/>
+            <Button Name="buttonClear" Click="ButtonClear_Click" Margin="520,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Clear" FontSize="40"/>
+            <Button Name="buttonCountFromResult" Click="ButtonCountFromResult_Click" Margin="520,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Count from Result" FontSize="25"/>
+            <TextBox Name="textBoxOutput" Text=" " Margin="10,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Result" FontSize="20" />
+            <!-- 
+            Poniżej wstaw to co potrzebujesz - zmieniłem bo t
+            -->
+        </Grid>
+        <Grid x:Name="CanvasGrid" Grid.Row="1" Background="AliceBlue">
+            <Canvas Name="canva" DoubleTapped="Canva_DoubleTapped">
+                <Ellipse Fill="Red" Canvas.Top="25" Canvas.Left="25" Height="100" Width="100"/>
+            </Canvas>
+        </Grid>
+
+
+        <!--
         <StackPanel Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Width="1920" Height="50" Text="Ordered Fuzzy Number A" TextAlignment="Center" FontSize="20"/>
@@ -65,7 +101,7 @@
             </StackPanel>
         </StackPanel>
         
-        
+        -->
         
 
     </Grid>

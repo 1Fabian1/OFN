@@ -44,8 +44,10 @@ namespace OFN
 
         public override string ToString()
         {
-            return "czesc: " + pos1.ToString() + " " + pos2.ToString() + " " + pos3.ToString() + " " + pos4.ToString();
+            return pos1.ToString() + ", " + pos2.ToString() + ", " + pos3.ToString() + ", " + pos4.ToString();
         }
+
+        //public double myParser(string )
 
 
     }
