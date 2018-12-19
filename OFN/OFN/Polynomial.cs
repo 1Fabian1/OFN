@@ -13,9 +13,8 @@ namespace OFN
     {
         
         List<UIElement> listOfTextBoxes = new List<UIElement>();
-        public async void CreateTextBoxes(TextBox textBoxNumberTextBoxes, Grid polynomialGrid, TextBox test)
-        {
-
+        public async void CreateTextBoxes(TextBox textBoxNumberTextBoxes, Grid polynomialGrid)
+        {           
             int numberOfTextBoxes = 0;
             var dialog = new MessageDialog("Stopień wielomianu musi być liczbą całkowitą i nie większą niż 10.");
 
@@ -25,12 +24,9 @@ namespace OFN
                 
             }
 
-            if (textBoxNumberTextBoxes.Text.Equals(""))
+            for (int i = 0; i <= listOfTextBoxes.Count() - 3; i++)
             {
-                for (int i = 0; i <= listOfTextBoxes.Count() - 4; i++)
-                {
-                    listOfTextBoxes[i + 3].Visibility = Visibility.Collapsed;
-                }
+                listOfTextBoxes[i + 2].Visibility = Visibility.Collapsed;
             }
 
             try
@@ -58,11 +54,11 @@ namespace OFN
             {
                 for(int i=0; i <= numberOfTextBoxes; i++)
                 {
-                    if(numberOfTextBoxes <= listOfTextBoxes.Count() - 3)
-                        listOfTextBoxes[i + 2].Visibility = Visibility.Visible;                 
+                    if(numberOfTextBoxes <= listOfTextBoxes.Count() - 2)
+                        listOfTextBoxes[i + 1].Visibility = Visibility.Visible;                 
                 }
             }
-
+            listOfTextBoxes.Clear();
 
 
             // TODO -----------> Algorytm liczacy up&down podanych wielomianow
