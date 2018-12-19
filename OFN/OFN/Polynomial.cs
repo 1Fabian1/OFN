@@ -11,49 +11,62 @@ namespace OFN
 {
     class Polynomial
     {
-        public async void CreateTextBoxes(TextBox textbox, Grid polynomialGrid, TextBox test)
+        
+        List<UIElement> listOfTextBoxes = new List<UIElement>();
+        public async void CreateTextBoxes(TextBox textBoxNumberTextBoxes, Grid polynomialGrid, TextBox test)
         {
-            polynomialGrid.Children.Clear();
-            int numberOfTextBoxes = 3;
-            int rightMargin = 70;
-            int textBoxWidth = 200;
-            var dialog = new MessageDialog("Stopień wielomianu musi być liczbą całkowitą i nie większą niż 20");
+
+            int numberOfTextBoxes = 0;
+            var dialog = new MessageDialog("Stopień wielomianu musi być liczbą całkowitą i nie większą niż 10.");
+
+            foreach (var children in polynomialGrid.Children)
+            {
+                listOfTextBoxes.Add(children);
+                
+            }
+
+            if (textBoxNumberTextBoxes.Text.Equals(""))
+            {
+                for (int i = 0; i <= listOfTextBoxes.Count() - 4; i++)
+                {
+                    listOfTextBoxes[i + 3].Visibility = Visibility.Collapsed;
+                }
+            }
+
             try
             {
-                numberOfTextBoxes = Int32.Parse(textbox.Text);
+                numberOfTextBoxes = Int32.Parse(textBoxNumberTextBoxes.Text);
             }
             catch (Exception e)
             {
-                if (!textbox.Text.Equals(""))
+                if (!textBoxNumberTextBoxes.Text.Equals(""))
                 {
-
+                    
                     await dialog.ShowAsync();
                     return;
                 }
                 return;
             }
+            
 
-            if (numberOfTextBoxes <= 20)
+            if (numberOfTextBoxes > 10)
             {
-                for (int i = 0; i < numberOfTextBoxes; i++)
-                {
-                    TextBox textBox = new TextBox();
-                    textBox.Name = "textBoxPolynomial" + i.ToString();
-                    textBox.Width = 100;
-                    textBox.Height = 70;
-                    textBox.Header = "Value x^" + (numberOfTextBoxes - i).ToString();
-                    textBox.Margin = new Thickness(0, 0, 0 +textBox.Width*i*2, 0);                 
-                    polynomialGrid.Children.Add(textBox);
-
-                }
+                dialog = new MessageDialog("Podaj liczbę mniejszą lub równą 10.");
+                await dialog.ShowAsync();
             }
             else
             {
-                dialog = new MessageDialog("Podaj liczbę mniejszą niż 20");
-                await dialog.ShowAsync();
+                for(int i=0; i <= numberOfTextBoxes; i++)
+                {
+                    if(numberOfTextBoxes <= listOfTextBoxes.Count() - 3)
+                        listOfTextBoxes[i + 2].Visibility = Visibility.Visible;                 
+                }
             }
 
-             test.Text = polynomialGrid.Children.Count().ToString();
+
+
+            // TODO -----------> Algorytm liczacy up&down podanych wielomianow
+            // test.Text = polynomialGrid.Children.Count().ToString();
 
 
         }
