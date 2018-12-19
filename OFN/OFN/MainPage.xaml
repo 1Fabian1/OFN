@@ -8,14 +8,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" Height="1200px" Width="1920px">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" Height="1080px" Width="1920px">
 
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="FirstGrid"  Grid.Row="0" Background="#eefefe">
+        <Grid x:Name="NormalFNGrid"  Grid.Row="0" Background="#eefefe">
             <TextBlock Margin="10,10,0,0"  Text="Ordered Fuzzy Number A" FontSize="15"/>
             <TextBox Name="textBox1LA" Margin="10,30,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
             <TextBox Name="textBox2mA" Margin="140,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15"/>
@@ -33,22 +33,35 @@
             <Button Name="buttonClear" Click="ButtonClear_Click" Margin="520,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Clear" FontSize="40"/>
             <Button Name="buttonCountFromResult" Click="ButtonCountFromResult_Click" Margin="520,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Count from Result" FontSize="25"/>
             <TextBox Name="textBoxOutput" Text=" " Margin="10,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Result" FontSize="20" />
-            <TextBox Name="textBoxDegreeOfPolynomial" Margin="10,400,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial" FontSize="15" TextChanged="TextBoxDegreeOfPolynomial_TextChanged"/>
+        </Grid>
+        
+        <Grid Name="PolynomialFNGrid" Margin="800,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
+            <TextBlock Name="textBlcokPolynomialHeader" Margin="10,10,0,0" Text="Polynomial Representation"/>
+            
+            <TextBox Name="textBoxDegreeOfPolynomial" Margin="10,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial" FontSize="15" Height="60" Width="150" TextChanged="TextBoxDegreeOfPolynomial_TextChanged"/>
+            <TextBox Name="textBoxFreeValue" Margin="190,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Free Value"  FontSize="15" Height="60" Width="100"/>
+            <TextBox Name="textBoxValueX"    Margin="320,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x"     FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX2"   Margin="450,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^2"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX3"   Margin="580,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^3"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX4"   Margin="710,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^4"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX5"   Margin="840,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^5"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            
+            <TextBox Name="textBoxValueX6"   Margin="320,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^6"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX7"   Margin="450,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^7"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX8"   Margin="580,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^8"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX9"   Margin="710,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^9"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <TextBox Name="textBoxValueX10"  Margin="840,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^10"  FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
         </Grid>
 
         <!-- 
             //////////////////////TODO: PRZEDSTAWIENIE GRAFICZNE
             
-        <Grid x:Name="CanvasGrid" Grid.Row="1" Background="AliceBlue">
+        <Grid x:Name="GraphicRepresentationGrid" Grid.Row="1" Background="AliceBlue">
             <Canvas Name="canva" DoubleTapped="Canva_DoubleTapped">
                 <Ellipse Fill="Red" Canvas.Top="25" Canvas.Left="25" Height="100" Width="100"/>
             </Canvas>
         </Grid>
         -->
-
-        <Grid Name="polynomialGrid" Margin="0,500,0,0" HorizontalAlignment="Left">
-           <!-- <StackPanel Name="polynomialPanel" Margin="0,500,0,0"/> -->
-        </Grid>
 
     </Grid>
 
