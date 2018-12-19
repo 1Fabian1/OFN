@@ -36,21 +36,41 @@
         </Grid>
         
         <Grid Name="PolynomialFNGrid" Margin="800,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
+            <!-- Polynomial A -->
             <TextBlock Name="textBlcokPolynomialHeader" Margin="10,10,0,0" Text="Polynomial Representation"/>
-            
-            <TextBox Name="textBoxDegreeOfPolynomial" Margin="10,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial" FontSize="15" Height="60" Width="150" TextChanged="TextBoxDegreeOfPolynomial_TextChanged"/>
-            <TextBox Name="textBoxFreeValue" Margin="190,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Free Value"  FontSize="15" Height="60" Width="100"/>
-            <TextBox Name="textBoxValueX"    Margin="320,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x"     FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX2"   Margin="450,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^2"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX3"   Margin="580,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^3"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX4"   Margin="710,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^4"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX5"   Margin="840,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^5"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            
-            <TextBox Name="textBoxValueX6"   Margin="320,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^6"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX7"   Margin="450,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^7"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX8"   Margin="580,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^8"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX9"   Margin="710,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^9"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
-            <TextBox Name="textBoxValueX10"  Margin="840,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^10"  FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            <Grid Name="PolynomialAFNGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
+               
+                <TextBox Name="textBoxDegreeOfPolynomialA" Margin="10,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial A" FontSize="15" Height="60" Width="160" TextChanged="TextBoxDegreeOfPolynomialA_TextChanged"/>
+                <TextBox Name="textBoxFreeValueA" Margin="200,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Free Value"  FontSize="15" Height="60" Width="100"/>
+                <TextBox Name="textBoxValueXA"    Margin="330,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x"     FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX2A"   Margin="460,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^2"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX3A"   Margin="590,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^3"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX4A"   Margin="720,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^4"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX5A"   Margin="850,30,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^5"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+
+                <TextBox Name="textBoxValueX6A"   Margin="330,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^6"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX7A"   Margin="460,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^7"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX8A"   Margin="590,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^8"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX9A"   Margin="720,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^9"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX10A"  Margin="850,130,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^10"  FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            </Grid>
+            <!-- Polynomial B -->
+            <Grid Name="PolynomialBFNGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
+                <TextBox Name="textBoxDegreeOfPolynomialB" Margin="10,230,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial B" FontSize="15" Height="60" Width="160" TextChanged="TextBoxDegreeOfPolynomialB_TextChanged"/>
+                
+                <TextBox Name="textBoxFreeValueB" Margin="200,230,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Free Value"  FontSize="15" Height="60" Width="100"/>
+                <TextBox Name="textBoxValueXB"    Margin="330,230,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x"     FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX2B"   Margin="460,230,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^2"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX3B"   Margin="590,230,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^3"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX4B"   Margin="720,230,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^4"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX5B"   Margin="850,230,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^5"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+
+                <TextBox Name="textBoxValueX6B"   Margin="330,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^6"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX7B"   Margin="460,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^7"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX8B"   Margin="590,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^8"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX9B"   Margin="720,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^9"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+                <TextBox Name="textBoxValueX10B"  Margin="850,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^10"  FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            </Grid>
         </Grid>
 
         <!-- 

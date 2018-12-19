@@ -30,7 +30,7 @@ namespace OFN
         FuzzyNumber resultToContinue = new FuzzyNumber();
         public MainPage()
         {
-            
+
             this.InitializeComponent();
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
@@ -162,7 +162,7 @@ namespace OFN
             textBox3pB.Text = "";
             textBox4PB.Text = "";
         }
-        
+
         private void ButtonCountFromResult_Click(object sender, RoutedEventArgs e)
         {
             textBox1LA.Text = resultToContinue.Pos1.ToString();
@@ -171,11 +171,17 @@ namespace OFN
             textBox4PA.Text = resultToContinue.Pos4.ToString();
         }
 
-        private void TextBoxDegreeOfPolynomial_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBoxDegreeOfPolynomialA_TextChanged(object sender, TextChangedEventArgs e)
         {
             Polynomial polynomial = new Polynomial();
-            polynomial.CreateTextBoxes(textBoxDegreeOfPolynomial, PolynomialFNGrid, textBox1LA);
+            polynomial.CreateTextBoxes(textBoxDegreeOfPolynomialA, PolynomialAFNGrid);
             
+        }
+
+        private void TextBoxDegreeOfPolynomialB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Polynomial polynomial = new Polynomial();
+            polynomial.CreateTextBoxes(textBoxDegreeOfPolynomialB, PolynomialBFNGrid);
         }
     }
 }
