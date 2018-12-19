@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" Height="1200px" Width="1920px">
 
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -33,76 +33,23 @@
             <Button Name="buttonClear" Click="ButtonClear_Click" Margin="520,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Clear" FontSize="40"/>
             <Button Name="buttonCountFromResult" Click="ButtonCountFromResult_Click" Margin="520,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Count from Result" FontSize="25"/>
             <TextBox Name="textBoxOutput" Text=" " Margin="10,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Result" FontSize="20" />
-            <!-- 
-            Poniżej wstaw to co potrzebujesz - zmieniłem bo t
-            -->
+            <TextBox Name="textBoxDegreeOfPolynomial" Margin="10,400,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial" FontSize="15" TextChanged="TextBoxDegreeOfPolynomial_TextChanged"/>
         </Grid>
+
+        <!-- 
+            //////////////////////TODO: PRZEDSTAWIENIE GRAFICZNE
+            
         <Grid x:Name="CanvasGrid" Grid.Row="1" Background="AliceBlue">
             <Canvas Name="canva" DoubleTapped="Canva_DoubleTapped">
                 <Ellipse Fill="Red" Canvas.Top="25" Canvas.Left="25" Height="100" Width="100"/>
             </Canvas>
         </Grid>
-
-
-        <!--
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="1920" Height="50" Text="Ordered Fuzzy Number A" TextAlignment="Center" FontSize="20"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="1920" Height="50" Text="Ordered Fuzzy Number B" TextAlignment="Center" FontSize="20"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Width="384" Height="60" Content="A + B" FontSize="40"/>
-                <Button Width="384" Height="60" Content="A - B" FontSize="40"/>
-                <Button Width="384" Height="60" Content="A * B" FontSize="40"/>
-                <Button Width="384" Height="60" Content="A / B" FontSize="40"/>
-                <Button Width="384" Height="60" Content="TEST" FontSize="40"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <Canvas Width="1920" Height="380">
-                    
-                </Canvas>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="1920" Height="50" Text="Polynomial Fuzzy Number" TextAlignment="Center" FontSize="20"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Up Fuzzy Number 1" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Up Fuzzy Number 2" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Up Result" FontSize="15"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Down Fuzzy Number 1" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Down Fuzzy Number 2" FontSize="15"/>
-                <TextBox Width="480" Height="70" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Down Result" FontSize="15"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Width="1920" Height="50" Text="Operations" TextAlignment="Center" FontSize="20"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Button Width="384" Height="60" Content="+" FontSize="40"/>
-                <Button Width="384" Height="60" Content="-" FontSize="40"/>
-                <Button Width="384" Height="60" Content="*" FontSize="40"/>
-                <Button Width="384" Height="60" Content="/" FontSize="40"/>
-            </StackPanel>
-        </StackPanel>
-        
         -->
-        
+
+        <Grid Name="polynomialGrid" Margin="0,500,0,0" HorizontalAlignment="Left">
+           <!-- <StackPanel Name="polynomialPanel" Margin="0,500,0,0"/> -->
+        </Grid>
 
     </Grid>
+
 </Page>

@@ -32,7 +32,6 @@ namespace OFN
         {
 
             this.InitializeComponent();
-
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
@@ -82,7 +81,7 @@ namespace OFN
             Canvas.SetLeft(line, 50);
 
 
-            CanvasGrid.Children.Add(line);
+            //CanvasGrid.Children.Add(line);
         }
 
         private void ButtonSubtract_Click(object sender, RoutedEventArgs e)
@@ -157,6 +156,12 @@ namespace OFN
             textBox2mA.Text = resultToContinue.Pos2.ToString();
             textBoxk3pA.Text = resultToContinue.Pos3.ToString();
             textBox4PA.Text = resultToContinue.Pos4.ToString();
+        }
+
+        private void TextBoxDegreeOfPolynomial_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Polynomial polynomial = new Polynomial();
+            polynomial.CreateTextBoxes(textBoxDegreeOfPolynomial, polynomialGrid, textBox1LA);
         }
     }
 }
