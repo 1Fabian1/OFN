@@ -3,39 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Windows.UI.Xaml.Controls;
+using System.IO;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 namespace OFN
 {
     class Polynomial
     {
-        private string upFN1;
-        private string upFN2;
-        private string downFN1;
-        private string downFN2;
-
-        public Polynomial(string upFN1, string upFN2, string downFN1, string downFN2)
+        public async void CreateTextBoxes(TextBox textbox, Grid polynomialGrid, TextBox test)
         {
-            this.upFN1 = upFN1;
-            this.upFN2 = upFN2;
-            this.downFN1 = downFN1;
-            this.downFN2 = downFN2;
-        }
-
-        public string UpFN1 { get => upFN1; set => upFN1 = value; }
-        public string UpFN2 { get => upFN2; set => upFN2 = value; }
-        public string DownFN1 { get => downFN1; set => downFN1 = value; }
-        public string DownFN2 { get => downFN2; set => downFN2 = value; }
-
-
-        private void Calculate(char znak)
-        {
-
-            //TO DO: Podaj stopien wielomianu, usunac StringBuilder, wyedytowac pole 
-            StringBuilder builder = new StringBuilder("(" + upFN1 + ")" + znak + "(" + upFN2 +")");
-            if (znak.Equals("+"))
+            polynomialGrid.Children.Clear();
+            int numberOfTextBoxes = 3;
+            int rightMargin = 70;
+            int textBoxWidth = 200;
+            var dialog = new MessageDialog("Stopień wielomianu musi być liczbą całkowitą i nie większą niż 20");
+            try
             {
-
+                numberOfTextBoxes = Int32.Parse(textbox.Text);
             }
+            catch (Exception e)
+            {
+                if (!textbox.Text.Equals(""))
+                {
+
+                    await dialog.ShowAsync();
+                    return;
+                }
+                return;
+            }
+
+            if (numberOfTextBoxes <= 20)
+            {
+                for (int i = 0; i < numberOfTextBoxes; i++)
+                {
+                    TextBox textBox = new TextBox();
+                    textBox.Name = "textBoxPolynomial" + i.ToString();
+                    textBox.Width = 100;
+                    textBox.Height = 70;
+                    textBox.Header = "Value x^" + (numberOfTextBoxes - i).ToString();
+                    textBox.Margin = new Thickness(0, 0, 0 +textBox.Width*i*2, 0);                 
+                    polynomialGrid.Children.Add(textBox);
+
+                }
+            }
+            else
+            {
+                dialog = new MessageDialog("Podaj liczbę mniejszą niż 20");
+                await dialog.ShowAsync();
+            }
+
+             test.Text = polynomialGrid.Children.Count().ToString();
+
+
         }
     }
 }
