@@ -101,6 +101,8 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Polynomial.cs" />
+    <Compile Include="PolynomialTextBoxes.cs" />
+    <Compile Include="PolynomialAlgebra.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
