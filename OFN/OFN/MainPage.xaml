@@ -1,4 +1,4 @@
-﻿<Page
+﻿ <Page
     x:Class="OFN.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -70,6 +70,14 @@
                 <TextBox Name="textBoxValueX8B"   Margin="590,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^8"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
                 <TextBox Name="textBoxValueX9B"   Margin="720,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^9"   FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
                 <TextBox Name="textBoxValueX10B"  Margin="850,330,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^10"  FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
+            </Grid>
+            <Grid Name="PolynomialButtons"  Grid.Row="0">
+                <Button Name="buttonAddPolynomials" Click="ButtonAddPolynomials_Click" Margin="0,450,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A + B" FontSize="30"/>
+                <Button Name="buttonSubstractPolynomials" Click="ButtonSubstractPolynomials_Click" Margin="130,450,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A - B" FontSize="30"/>
+                <Button Name="buttonMultiplyPolynomials" Click="ButtonMultiplyPolynomials_Click" Margin="260,450,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A * B" FontSize="30"/>
+                <Button Name="buttonDividePolynomials" Click="ButtonDividePolynomials_Click" Margin="390,450,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A / B" FontSize="30"/>
+                <TextBox Name="textBoxResultPolynomail" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="520,450,0,0" Header="Result" Width="400" Height="60" TextWrapping="Wrap" MaxHeight="300" MaxWidth="400" />
+
             </Grid>
         </Grid>
 

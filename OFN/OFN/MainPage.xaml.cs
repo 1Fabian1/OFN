@@ -160,15 +160,91 @@ namespace OFN
 
         private void TextBoxDegreeOfPolynomialA_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Polynomial polynomial = new Polynomial();
+            PolynomialTextBoes polynomial = new PolynomialTextBoes();
             polynomial.CreateTextBoxes(textBoxDegreeOfPolynomialA, PolynomialAFNGrid);
-            
         }
 
         private void TextBoxDegreeOfPolynomialB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Polynomial polynomial = new Polynomial();
+            PolynomialTextBoes polynomial = new PolynomialTextBoes();
             polynomial.CreateTextBoxes(textBoxDegreeOfPolynomialB, PolynomialBFNGrid);
         }
+
+        private void ButtonAddPolynomials_Click(object sender, RoutedEventArgs e)
+        {
+            double freeValueA, freeValueB;
+            Double.TryParse(textBoxFreeValueA.Text, out freeValueA); Double.TryParse(textBoxFreeValueB.Text, out freeValueB);
+            double valueXA, valueXB;
+            Double.TryParse(textBoxValueXA.Text, out valueXA); Double.TryParse(textBoxValueXB.Text, out valueXB);
+            double valueX2A, valueX2B;
+            Double.TryParse(textBoxValueX2A.Text, out valueX2A); Double.TryParse(textBoxValueX2B.Text, out valueX2B);
+            double valueX3A, valueX3B;
+            Double.TryParse(textBoxValueX3A.Text, out valueX3A); Double.TryParse(textBoxValueX3B.Text, out valueX3B);
+            double valueX4A, valueX4B;
+            Double.TryParse(textBoxValueX4A.Text, out valueX4A); Double.TryParse(textBoxValueX4B.Text, out valueX4B);
+            double valueX5A, valueX5B;
+            Double.TryParse(textBoxValueX5A.Text, out valueX5A); Double.TryParse(textBoxValueX5B.Text, out valueX5B);
+            double valueX6A, valueX6B;
+            Double.TryParse(textBoxValueX6A.Text, out valueX6A); Double.TryParse(textBoxValueX6B.Text, out valueX6B);
+            double valueX7A, valueX7B;
+            Double.TryParse(textBoxValueX7A.Text, out valueX7A); Double.TryParse(textBoxValueX7B.Text, out valueX7B);
+            double valueX8A, valueX8B;
+            Double.TryParse(textBoxValueX8A.Text, out valueX8A); Double.TryParse(textBoxValueX8B.Text, out valueX8B);
+            double valueX9A, valueX9B;
+            Double.TryParse(textBoxValueX9A.Text, out valueX9A); Double.TryParse(textBoxValueX9B.Text, out valueX9B);
+            double valueX10A, valueX10B;
+            Double.TryParse(textBoxValueX10A.Text, out valueX10A); Double.TryParse(textBoxValueX10B.Text, out valueX10B);
+
+            Polynomial polynomialResult = new Polynomial();
+            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A, valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
+            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
+
+            polynomialResult = PolynomialAlgebra.addPolynomialAB(polynomialA, polynomialB);
+            textBoxResultPolynomail.Text = polynomialResult.ToString();
+        }
+
+        private void ButtonSubstractPolynomials_Click(object sender, RoutedEventArgs e)
+        {
+            double freeValueA, freeValueB;
+            Double.TryParse(textBoxFreeValueA.Text, out freeValueA); Double.TryParse(textBoxFreeValueB.Text, out freeValueB);
+            double valueXA, valueXB;
+            Double.TryParse(textBoxValueXA.Text, out valueXA); Double.TryParse(textBoxValueXB.Text, out valueXB);
+            double valueX2A, valueX2B;
+            Double.TryParse(textBoxValueX2A.Text, out valueX2A); Double.TryParse(textBoxValueX2B.Text, out valueX2B);
+            double valueX3A, valueX3B;
+            Double.TryParse(textBoxValueX3A.Text, out valueX3A); Double.TryParse(textBoxValueX3B.Text, out valueX3B);
+            double valueX4A, valueX4B;
+            Double.TryParse(textBoxValueX4A.Text, out valueX4A); Double.TryParse(textBoxValueX4B.Text, out valueX4B);
+            double valueX5A, valueX5B;
+            Double.TryParse(textBoxValueX5A.Text, out valueX5A); Double.TryParse(textBoxValueX5B.Text, out valueX5B);
+            double valueX6A, valueX6B;
+            Double.TryParse(textBoxValueX6A.Text, out valueX6A); Double.TryParse(textBoxValueX6B.Text, out valueX6B);
+            double valueX7A, valueX7B;
+            Double.TryParse(textBoxValueX7A.Text, out valueX7A); Double.TryParse(textBoxValueX7B.Text, out valueX7B);
+            double valueX8A, valueX8B;
+            Double.TryParse(textBoxValueX8A.Text, out valueX8A); Double.TryParse(textBoxValueX8B.Text, out valueX8B);
+            double valueX9A, valueX9B;
+            Double.TryParse(textBoxValueX9A.Text, out valueX9A); Double.TryParse(textBoxValueX9B.Text, out valueX9B);
+            double valueX10A, valueX10B;
+            Double.TryParse(textBoxValueX10A.Text, out valueX10A); Double.TryParse(textBoxValueX10B.Text, out valueX10B);
+
+            Polynomial polynomialResult = new Polynomial();
+            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A, valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
+            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
+
+            polynomialResult = PolynomialAlgebra.substractPolynomialAB(polynomialA, polynomialB);
+            textBoxResultPolynomail.Text = polynomialResult.ToString();
+        }
+
+        private void ButtonMultiplyPolynomials_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonDividePolynomials_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+                     
     }
 }
