@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting" 
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" Height="1080px" Width="1920px">
 
@@ -34,6 +34,7 @@
             <Button Name="buttonClear" Click="ButtonClear_Click" Margin="520,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Clear" FontSize="40"/>
             <Button Name="buttonCountFromResult" Click="ButtonCountFromResult_Click" Margin="520,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Count from Result" FontSize="25"/>
             <TextBox Name="textBoxOutput" Text=" " Margin="10,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Result" FontSize="20" />
+            <TextBox Name="textBoxDiscretization" Margin="520,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Discretization Parameter" FontSize="15"/>
         </Grid>
         
         <Grid Name="PolynomialFNGrid" Margin="800,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
@@ -82,7 +83,9 @@
             </Grid>
         </Grid>
 
-            
+
+        <!-- https://www.youtube.com/watch?v=cnkrkB-I-q4  yt do wykresów --> 
+        
         <Grid x:Name="GraphicRepresentationGrid" Grid.Row="1" Background="AliceBlue">
             <Charting:Chart x:Name="Wykers" VerticalAlignment="Top" HorizontalAlignment="Left"
                             Width="600" Height="300" DoubleTapped="Wykers_DoubleTapped" Loaded="Wykers_Loaded"/>

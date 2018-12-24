@@ -269,13 +269,6 @@ namespace OFN
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Test> tests = new List<Test>();
-
-            tests.Add(new Test() { name = "A", amount = 30 });
-            tests.Add(new Test() { name = "B", amount = 10 });
-            tests.Add(new Test() { name = "B", amount = 10 });
-            tests.Add(new Test() { name = "B", amount = 10 });
-            (Wykers.Series[0] as ColumnSeries).ItemsSource = tests;
         }
     }
 }
