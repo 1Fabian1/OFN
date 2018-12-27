@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
+using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,6 +29,11 @@ namespace OFN
     public sealed partial class MainPage : Page
     {
         FuzzyNumber resultToContinue = new FuzzyNumber();
+
+        public class Test {
+            public string name  { get; set; }
+            public int amount { get; set; }
+        }
         public MainPage()
         {
 
@@ -245,6 +251,27 @@ namespace OFN
         {
 
         }
-                     
+
+        private void Wykers_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+
+        }
+
+        private void LoadChartContents()
+        {
+
+        }
+
+        private void Wykers_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
+
 }
