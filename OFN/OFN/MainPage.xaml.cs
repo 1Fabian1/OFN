@@ -254,21 +254,24 @@ namespace OFN
 
         private void Wykers_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            LoadChartContents();
+
         }
 
         private void LoadChartContents()
         {
-           
+
         }
 
         private void Wykers_Loaded(object sender, RoutedEventArgs e)
         {
-           
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+
         }
+
     }
+
 }
