@@ -95,12 +95,14 @@ namespace OFN
             }
 
             StringBuilder stringBuilder = new StringBuilder(resultString);
-            if (stringBuilder[0].Equals('+'))
+            if(stringBuilder.Length > 1)
             {
-                stringBuilder.Remove(0, 1);
+                if (stringBuilder[0].Equals('+'))
+                {
+                    stringBuilder.Remove(0, 1);
+                }
+                resultString = stringBuilder.ToString();
             }
-            resultString = stringBuilder.ToString();
-
 
             return resultString;
          
