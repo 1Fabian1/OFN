@@ -33,7 +33,11 @@ namespace OFN
             {
                 numberOfTextBoxes = Int32.Parse(textBoxNumberTextBoxes.Text);
             }
+<<<<<<< HEAD
             catch (Exception e)
+=======
+            catch (Exception)
+>>>>>>> master
             {
                 if (!textBoxNumberTextBoxes.Text.Equals(""))
                 {
