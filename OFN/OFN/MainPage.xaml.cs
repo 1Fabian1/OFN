@@ -76,6 +76,7 @@ namespace OFN
 
         private void Canva_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
+            /*
             var line = new Line();
             line.Stroke = new SolidColorBrush(Colors.Black);
             line.StrokeThickness = 3;
@@ -90,6 +91,7 @@ namespace OFN
 
 
             //CanvasGrid.Children.Add(line);
+            */
         }
 
         private void ButtonSubtract_Click(object sender, RoutedEventArgs e)
