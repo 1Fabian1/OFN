@@ -46,7 +46,7 @@ namespace OFN
 
             comboBoxPartOfPolynomial.Items.Add("Up");
             comboBoxPartOfPolynomial.Items.Add("Down");
-
+            
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
@@ -79,6 +79,7 @@ namespace OFN
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
+                    
         }
 
 
