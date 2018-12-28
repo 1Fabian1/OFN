@@ -14,7 +14,7 @@ namespace OFN
         private double pos4;
         private List<double> up;
         private List<double> down;
-
+        private string test;
         public FuzzyNumber()
         {
             this.pos1 = 0;
@@ -74,8 +74,8 @@ namespace OFN
         {
             List<double> resultList = new List<double>();
             double putToList = 0;
-            //double jump = 1 / discretizationParameter;  // nie działa, jakby w ogóle nie dzielił
-            double jump = 0.2; //działa znakomicie, ale nie można przypisać wartości dzielenia na stałe
+            double jump = 1 / Double.Parse(discretizationParameter.ToString());  // nie działa, jakby w ogóle nie dzielił
+            //double jump = 0.2; //działa znakomicie, ale nie można przypisać wartości dzielenia na stałe
             double jumpTemp = jump;
 
             for (int i = 0; i < discretizationParameter; i++)
@@ -86,9 +86,6 @@ namespace OFN
                 jump += jumpTemp;
 
             }
-
-
-
 
             return resultList;
         }
