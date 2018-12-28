@@ -28,7 +28,7 @@ namespace OFN
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        FuzzyNumber resultToContinue = new FuzzyNumber();
+        FuzzyNumber resultToContinue = new FuzzyNumber();      
 
         public class Test {
             public string name  { get; set; }
@@ -38,6 +38,8 @@ namespace OFN
         {
 
             this.InitializeComponent();
+            comboBoxPartOfPolynomial.Items.Add("Up");
+            comboBoxPartOfPolynomial.Items.Add("Down");
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
