@@ -23,6 +23,15 @@ namespace OFN
             this.pos4 = 0;
         }
 
+        public FuzzyNumber(double pos1, double pos2, double pos3, double pos4, int discretizationParameter)
+        {
+            this.pos1 = pos1;
+            this.pos2 = pos2;
+            this.pos3 = pos3;
+            this.pos4 = pos4;
+            up = CalculateUP(pos1, pos2, discretizationParameter);
+        }
+
         public FuzzyNumber(double pos1, double pos2, double pos3, double pos4)
         {
             this.pos1 = pos1;
@@ -59,6 +68,39 @@ namespace OFN
         public override string ToString()
         {
             return pos1.ToString() + ", " + pos2.ToString() + ", " + pos3.ToString() + ", " + pos4.ToString();
+        }
+
+        private List<double> CalculateUP(double pos1, double pos2, int discretizationParameter)
+        {
+            List<double> resultList = new List<double>();
+            double putToList = 0;
+            //double jump = 1 / discretizationParameter;  // nie działa, jakby w ogóle nie dzielił
+            double jump = 0.2; //działa znakomicie, ale nie można przypisać wartości dzielenia na stałe
+            double jumpTemp = jump;
+
+            for (int i = 0; i < discretizationParameter; i++)
+            {
+
+                putToList = function(pos1, pos2, jump);
+                resultList.Add(putToList);
+                jump += jumpTemp;
+
+            }
+
+
+
+
+            return resultList;
+        }
+
+        private double function(double pos1, double pos2, double jump)
+        {
+            double y, a, b = 0;
+            a = pos2 - pos1;
+            b = pos1;
+            y = jump * a + b;
+
+            return y;
         }
 
         //public double myParser(string )

@@ -28,25 +28,26 @@ namespace OFN
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        FuzzyNumber resultToContinue = new FuzzyNumber();      
+        FuzzyNumber resultToContinue = new FuzzyNumber();
 
-        public class Test {
-            public string name  { get; set; }
+        public class Test
+        {
+            public string name { get; set; }
             public int amount { get; set; }
         }
         public MainPage()
         {
 
             this.InitializeComponent();
-            comboBoxPartOfPolynomial.Items.Add("Up");
-            comboBoxPartOfPolynomial.Items.Add("Down");
+            //comboBoxPartOfPolynomial.Items.Add("Up");
+            //comboBoxPartOfPolynomial.Items.Add("Down");
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
 
             Debug.WriteLine("Trochę działań - podgląd w debugu");
-            FuzzyNumber f1 = new FuzzyNumber(1, 2, 30, 1);
-            FuzzyNumber f2 = new FuzzyNumber(1, 2, 3, 4);
+            FuzzyNumber f1 = new FuzzyNumber(1, 5, 8, 10, 5);
+            FuzzyNumber f2 = new FuzzyNumber(1, 2, 3, 4, 5);
             FuzzyNumber result = new FuzzyNumber(0, 0, 0, 0);
             Debug.WriteLine("f1: " + f1.ToString());
             Debug.WriteLine("f2: " + f2.ToString());
