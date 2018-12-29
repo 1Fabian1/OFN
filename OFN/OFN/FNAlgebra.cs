@@ -14,11 +14,20 @@ namespace OFN
         public static FuzzyNumber addAplusB(FuzzyNumber fuzzyNumberA, FuzzyNumber fuzzyNumberB)
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
-
+            int i = 0;
+            double upAddHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 + fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 + fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 + fuzzyNumberB.Pos3;
             fuzzy.Pos4 = fuzzyNumberA.Pos4 + fuzzyNumberB.Pos4;
+
+            //adding UP part - //works 
+            foreach (double x in fuzzyNumberA.Up)
+            {
+                upAddHelper = x + fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upAddHelper);
+                i++;
+            }
 
             return fuzzy;
         }
@@ -26,11 +35,19 @@ namespace OFN
         public static FuzzyNumber subtractAminusB(FuzzyNumber fuzzyNumberA, FuzzyNumber fuzzyNumberB)
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
-
+            int i = 0;
+            double upAddHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 - fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 - fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 - fuzzyNumberB.Pos3;
             fuzzy.Pos4 = fuzzyNumberA.Pos4 - fuzzyNumberB.Pos4;
+
+            foreach (double x in fuzzyNumberA.Up)
+            {
+                upAddHelper = x - fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upAddHelper);
+                i++;
+            }
 
             return fuzzy;
         }
@@ -38,11 +55,18 @@ namespace OFN
         public static FuzzyNumber multiplyAB(FuzzyNumber fuzzyNumberA, FuzzyNumber fuzzyNumberB)
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
-
+            int i = 0;
+            double upAddHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 * fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 * fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 * fuzzyNumberB.Pos3;
             fuzzy.Pos4 = fuzzyNumberA.Pos4 * fuzzyNumberB.Pos4;
+            foreach (double x in fuzzyNumberA.Up)
+            {
+                upAddHelper = x * fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upAddHelper);
+                i++;
+            }
 
             return fuzzy;
         }
@@ -69,10 +93,19 @@ namespace OFN
             FuzzyNumber fuzzy = new FuzzyNumber();
             if (checkIfNotZero(fuzzyNumberA) && checkIfNotZero(fuzzyNumberB))
             {
+                int i = 0;
+                double upAddHelper = 0;
                 fuzzy.Pos1 = fuzzyNumberA.Pos1 / fuzzyNumberB.Pos1;
                 fuzzy.Pos2 = fuzzyNumberA.Pos2 / fuzzyNumberB.Pos2;
                 fuzzy.Pos3 = fuzzyNumberA.Pos3 / fuzzyNumberB.Pos3;
                 fuzzy.Pos4 = fuzzyNumberA.Pos4 / fuzzyNumberB.Pos4;
+
+                foreach (double x in fuzzyNumberA.Up)
+                {
+                    upAddHelper = x / fuzzyNumberB.Up[i];
+                    fuzzy.Up.Add(upAddHelper);
+                    i++;
+                }
 
                 return fuzzy;
             }

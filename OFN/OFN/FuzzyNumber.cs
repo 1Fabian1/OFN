@@ -21,6 +21,7 @@ namespace OFN
             this.pos2 = 0;
             this.pos3 = 0;
             this.pos4 = 0;
+            this.Up = new List<double>();
         }
 
         public FuzzyNumber(double pos1, double pos2, double pos3, double pos4, int discretizationParameter)

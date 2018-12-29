@@ -40,10 +40,11 @@ namespace OFN
 
         public MainPage()
         {
-            
+
             this.InitializeComponent();
             //comboBoxPartOfPolynomial.Items.Add("Up");
             //comboBoxPartOfPolynomial.Items.Add("Down");
+            /*
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
@@ -61,6 +62,7 @@ namespace OFN
             Debug.WriteLine("f2: " + f2.ToString());
             result = FNAlgebra.divideAB(f1, f2);
             Debug.WriteLine("result: " + result.ToString());
+            */
 
         }
 
@@ -74,9 +76,10 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
             FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
@@ -113,9 +116,10 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
             FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.subtractAminusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
@@ -131,9 +135,10 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
             FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.multiplyAB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
@@ -149,9 +154,10 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
             FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.divideAB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
