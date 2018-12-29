@@ -29,6 +29,13 @@ namespace OFN
                 i++;
             }
 
+            foreach (double x in fuzzyNumberA.Down)
+            {
+                upAddHelper = x + fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upAddHelper);
+                i++;
+            }
+
             return fuzzy;
         }
 
@@ -48,6 +55,12 @@ namespace OFN
                 fuzzy.Up.Add(upAddHelper);
                 i++;
             }
+            foreach (double x in fuzzyNumberA.Down)
+            {
+                upAddHelper = x + fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upAddHelper);
+                i++;
+            }
 
             return fuzzy;
         }
@@ -64,6 +77,12 @@ namespace OFN
             foreach (double x in fuzzyNumberA.Up)
             {
                 upAddHelper = x * fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upAddHelper);
+                i++;
+            }
+            foreach (double x in fuzzyNumberA.Down)
+            {
+                upAddHelper = x + fuzzyNumberB.Up[i];
                 fuzzy.Up.Add(upAddHelper);
                 i++;
             }
@@ -103,6 +122,12 @@ namespace OFN
                 foreach (double x in fuzzyNumberA.Up)
                 {
                     upAddHelper = x / fuzzyNumberB.Up[i];
+                    fuzzy.Up.Add(upAddHelper);
+                    i++;
+                }
+                foreach (double x in fuzzyNumberA.Down)
+                {
+                    upAddHelper = x + fuzzyNumberB.Up[i];
                     fuzzy.Up.Add(upAddHelper);
                     i++;
                 }

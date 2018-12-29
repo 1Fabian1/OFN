@@ -14,7 +14,7 @@ namespace OFN
         private double pos4;
         private List<double> up;
         private List<double> down;
-        private string test;
+        //private string test;
         public FuzzyNumber()
         {
             this.pos1 = 0;
@@ -22,15 +22,18 @@ namespace OFN
             this.pos3 = 0;
             this.pos4 = 0;
             this.Up = new List<double>();
+            this.Down = new List<double>();
         }
 
         public FuzzyNumber(double pos1, double pos2, double pos3, double pos4, int discretizationParameter)
         {
+            if (discretizationParameter == 0 || discretizationParameter.Equals(null) || discretizationParameter.Equals("")) discretizationParameter = 10;
             this.pos1 = pos1;
             this.pos2 = pos2;
             this.pos3 = pos3;
             this.pos4 = pos4;
             up = CalculateUP(pos1, pos2, discretizationParameter);
+            down = CalculateDown(pos1, pos2, discretizationParameter);
         }
 
         public FuzzyNumber(double pos1, double pos2, double pos3, double pos4)
@@ -75,13 +78,11 @@ namespace OFN
         {
             List<double> resultList = new List<double>();
             double putToList = 0;
-            double jump = 1 / Double.Parse(discretizationParameter.ToString());  // nie działa, jakby w ogóle nie dzielił
-            //double jump = 0.2; //działa znakomicie, ale nie można przypisać wartości dzielenia na stałe
+            double jump = 1 / Double.Parse(discretizationParameter.ToString());
             double jumpTemp = jump;
 
             for (int i = 0; i < discretizationParameter; i++)
             {
-
                 putToList = function(pos1, pos2, jump);
                 resultList.Add(putToList);
                 jump += jumpTemp;
@@ -89,6 +90,27 @@ namespace OFN
             }
 
             return resultList;
+        }
+
+        //to consider 
+        private List<double> CalculateDown(double pos1, double pos2, int discretizationParameter)
+        {
+            List<double> resultList = new List<double>();
+            double putToList = 0;
+            double jump = 1 / Double.Parse(discretizationParameter.ToString());
+            double jumpTemp = 1 - jump;
+            int i = 0;
+
+            for (; i < discretizationParameter; discretizationParameter--)
+            {
+                putToList = function(pos1, pos2, jump);
+                resultList.Add(putToList);
+                jump -= jumpTemp;
+
+            }
+
+            return resultList;
+
         }
 
         private double function(double pos1, double pos2, double jump)
@@ -100,9 +122,6 @@ namespace OFN
 
             return y;
         }
-
-        //public double myParser(string )
-
 
     }
 }
