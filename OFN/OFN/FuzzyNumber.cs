@@ -14,7 +14,6 @@ namespace OFN
         private double pos4;
         private List<double> up;
         private List<double> down;
-        //private string test;
         public FuzzyNumber()
         {
             this.pos1 = 0;
@@ -33,7 +32,7 @@ namespace OFN
             this.pos3 = pos3;
             this.pos4 = pos4;
             up = CalculateUP(pos1, pos2, discretizationParameter);
-            down = CalculateDown(pos1, pos2, discretizationParameter);
+            down = CalculateDown(pos3, pos4, discretizationParameter);
         }
 
         public FuzzyNumber(double pos1, double pos2, double pos3, double pos4)
@@ -83,7 +82,7 @@ namespace OFN
 
             for (int i = 0; i < discretizationParameter; i++)
             {
-                putToList = function(pos1, pos2, jump);
+                putToList = functionUp(pos1, pos2, jump);
                 resultList.Add(putToList);
                 jump += jumpTemp;
 
@@ -93,7 +92,7 @@ namespace OFN
         }
 
         //to consider 
-        private List<double> CalculateDown(double pos1, double pos2, int discretizationParameter)
+        private List<double> CalculateDown(double pos3, double pos4, int discretizationParameter)
         {
             List<double> resultList = new List<double>();
             double putToList = 0;
@@ -103,9 +102,9 @@ namespace OFN
 
             for (; i < discretizationParameter; discretizationParameter--)
             {
-                putToList = function(pos1, pos2, jump);
+                putToList = functionDown(pos3, pos4, jumpTemp);
                 resultList.Add(putToList);
-                jump -= jumpTemp;
+                jumpTemp -= jump;
 
             }
 
@@ -113,12 +112,22 @@ namespace OFN
 
         }
 
-        private double function(double pos1, double pos2, double jump)
+        private double functionUp(double pos1, double pos2, double jump)
         {
             double y, a, b = 0;
             a = pos2 - pos1;
             b = pos1;
             y = jump * a + b;
+
+            return y;
+        }
+
+        private double functionDown(double pos3, double pos4, double jump)
+        {
+            double y, a, b = 0;
+            a = pos4 - pos3;
+            b = pos4;
+            y = -jump * a + b;
 
             return y;
         }

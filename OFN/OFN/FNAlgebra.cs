@@ -15,7 +15,8 @@ namespace OFN
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
             int i = 0;
-            double upAddHelper = 0;
+            double upHelper = 0;
+            double downHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 + fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 + fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 + fuzzyNumberB.Pos3;
@@ -24,15 +25,16 @@ namespace OFN
             //adding UP part - //works 
             foreach (double x in fuzzyNumberA.Up)
             {
-                upAddHelper = x + fuzzyNumberB.Up[i];
-                fuzzy.Up.Add(upAddHelper);
+                upHelper = x + fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upHelper);
                 i++;
             }
-
+            //adding DOWN part
+            i = 0;
             foreach (double x in fuzzyNumberA.Down)
             {
-                upAddHelper = x + fuzzyNumberB.Up[i];
-                fuzzy.Up.Add(upAddHelper);
+                downHelper = x + fuzzyNumberB.Down[i];
+                fuzzy.Down.Add(downHelper);
                 i++;
             }
 
@@ -43,7 +45,8 @@ namespace OFN
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
             int i = 0;
-            double upAddHelper = 0;
+            double upHelper = 0;
+            double downHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 - fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 - fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 - fuzzyNumberB.Pos3;
@@ -51,14 +54,15 @@ namespace OFN
 
             foreach (double x in fuzzyNumberA.Up)
             {
-                upAddHelper = x - fuzzyNumberB.Up[i];
-                fuzzy.Up.Add(upAddHelper);
+                upHelper = x - fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upHelper);
                 i++;
             }
+            i = 0;
             foreach (double x in fuzzyNumberA.Down)
             {
-                upAddHelper = x + fuzzyNumberB.Up[i];
-                fuzzy.Up.Add(upAddHelper);
+                downHelper = x - fuzzyNumberB.Down[i];
+                fuzzy.Down.Add(downHelper);
                 i++;
             }
 
@@ -69,21 +73,23 @@ namespace OFN
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
             int i = 0;
-            double upAddHelper = 0;
+            double upHelper = 0;
+            double downHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 * fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 * fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 * fuzzyNumberB.Pos3;
             fuzzy.Pos4 = fuzzyNumberA.Pos4 * fuzzyNumberB.Pos4;
             foreach (double x in fuzzyNumberA.Up)
             {
-                upAddHelper = x * fuzzyNumberB.Up[i];
-                fuzzy.Up.Add(upAddHelper);
+                upHelper = x * fuzzyNumberB.Up[i];
+                fuzzy.Up.Add(upHelper);
                 i++;
             }
+            i = 0;
             foreach (double x in fuzzyNumberA.Down)
             {
-                upAddHelper = x + fuzzyNumberB.Up[i];
-                fuzzy.Up.Add(upAddHelper);
+                downHelper = x * fuzzyNumberB.Down[i];
+                fuzzy.Down.Add(downHelper);
                 i++;
             }
 
@@ -113,7 +119,8 @@ namespace OFN
             if (checkIfNotZero(fuzzyNumberA) && checkIfNotZero(fuzzyNumberB))
             {
                 int i = 0;
-                double upAddHelper = 0;
+                double upHelper = 0;
+                double downHelper = 0;
                 fuzzy.Pos1 = fuzzyNumberA.Pos1 / fuzzyNumberB.Pos1;
                 fuzzy.Pos2 = fuzzyNumberA.Pos2 / fuzzyNumberB.Pos2;
                 fuzzy.Pos3 = fuzzyNumberA.Pos3 / fuzzyNumberB.Pos3;
@@ -121,14 +128,15 @@ namespace OFN
 
                 foreach (double x in fuzzyNumberA.Up)
                 {
-                    upAddHelper = x / fuzzyNumberB.Up[i];
-                    fuzzy.Up.Add(upAddHelper);
+                    upHelper = x / fuzzyNumberB.Up[i];
+                    fuzzy.Up.Add(upHelper);
                     i++;
                 }
+                i = 0;
                 foreach (double x in fuzzyNumberA.Down)
                 {
-                    upAddHelper = x + fuzzyNumberB.Up[i];
-                    fuzzy.Up.Add(upAddHelper);
+                    downHelper = x / fuzzyNumberB.Down[i];
+                    fuzzy.Down.Add(downHelper);
                     i++;
                 }
 
