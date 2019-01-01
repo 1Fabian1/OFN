@@ -191,6 +191,8 @@ namespace OFN
             textBox2mB.Text = "";
             textBox3pB.Text = "";
             textBox4PB.Text = "";
+            textBoxOutput.Text = "";
+            textBoxDiscretization.Text = "";
 
             drawer.clearCanvas(CanvaField);
             drawer.drawAxis(CanvaField);
