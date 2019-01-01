@@ -100,6 +100,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManualDrawer.cs" />
     <Compile Include="Polynomial.cs" />
     <Compile Include="PolynomialTextBoxes.cs" />
     <Compile Include="PolynomialAlgebra.cs" />

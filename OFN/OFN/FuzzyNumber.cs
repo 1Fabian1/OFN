@@ -8,6 +8,7 @@ namespace OFN
 {
     class FuzzyNumber
     {
+        private String name;
         private double pos1;
         private double pos2;
         private double pos3;
@@ -60,6 +61,17 @@ namespace OFN
             this.up = up;
             this.down = down;
         }
+        public FuzzyNumber(double pos1, double pos2, double pos3, double pos4, int discretizationParameter, string name)
+        {
+            if (discretizationParameter == 0 || discretizationParameter.Equals(null) || discretizationParameter.Equals("")) discretizationParameter = 10;
+            this.pos1 = pos1;
+            this.pos2 = pos2;
+            this.pos3 = pos3;
+            this.pos4 = pos4;
+            up = CalculateUP(pos1, pos2, discretizationParameter);
+            down = CalculateDown(pos3, pos4, discretizationParameter);
+            this.name = name;
+        }
 
         public double Pos1 { get => pos1; set => pos1 = value; }
         public double Pos2 { get => pos2; set => pos2 = value; }
@@ -67,6 +79,22 @@ namespace OFN
         public double Pos4 { get => pos4; set => pos4 = value; }
         public List<double> Up { get => up; set => up = value; }
         public List<double> Down { get => down; set => down = value; }
+        public string Name { get => name; set => name = value; }
+
+        public FuzzyNumber GetFuzzyNumber()
+        {
+            FuzzyNumber fN = new FuzzyNumber();
+
+            fN.pos1 = this.pos1;
+            fN.pos2 = this.pos2;
+            fN.pos3 = this.pos3;
+            fN.pos4 = this.pos4;
+            fN.up = this.Up;
+            fN.down = this.down;
+            fN.name = this.name;
+
+            return fN;
+        }
 
         public override string ToString()
         {
@@ -130,6 +158,22 @@ namespace OFN
             y = -jump * a + b;
 
             return y;
+        }
+
+        public static double findMaxValueOfFuzzyNumber(FuzzyNumber fuzzyNumber)
+        {
+            double maxVal = double.MinValue;
+            List<double> listOfValues = new List<double>();
+            listOfValues.Add(fuzzyNumber.pos1);
+            listOfValues.Add(fuzzyNumber.pos2);
+            listOfValues.Add(fuzzyNumber.pos3);
+            listOfValues.Add(fuzzyNumber.pos4);
+
+            listOfValues.Sort();
+
+            maxVal = listOfValues[3];
+
+            return maxVal;
         }
 
     }

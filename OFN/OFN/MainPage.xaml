@@ -84,9 +84,14 @@
             </Grid>
         </Grid>
 
+        <!-- https://www.youtube.com/watch?v=cnkrkB-I-q4  yt do wykresów -->
 
-        <!-- https://www.youtube.com/watch?v=cnkrkB-I-q4  yt do wykresów --> 
-        
+        <Grid Grid.Row="1">
+            <Canvas Name="CanvaField" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="1920">
+                
+            </Canvas>
+        </Grid>
+        <!--
         <Grid x:Name="GraphicRepresentationGrid" Grid.Row="1" Background="AliceBlue">
             <telerik:RadCartesianChart PaletteName="DefaultLight">
                 <telerik:RadCartesianChart.HorizontalAxis>
@@ -95,20 +100,18 @@
                 <telerik:RadCartesianChart.VerticalAxis>
                     <telerik:LinearAxis />
                 </telerik:RadCartesianChart.VerticalAxis>
-                <telerik:RadCartesianChart.Series>
-                    <telerik:LineSeries>
-                        <telerik:LineSeries.DataPoints>
-                            <telerik1:CategoricalDataPoint Category="Melbourne" Value="55" />
-                            <telerik1:CategoricalDataPoint Category="Sydney" Value="65" />
-                            <telerik1:CategoricalDataPoint Category="Brisbane" Value="93" />
-                            <telerik1:CategoricalDataPoint Category="Adelaide" Value="89" />
-                            <telerik1:CategoricalDataPoint Category="Perth" Value="77" />
-                        </telerik:LineSeries.DataPoints>
-                    </telerik:LineSeries>
-                </telerik:RadCartesianChart.Series>
+                <telerik:LineSeries ItemsSource="{Binding}">
+                    <telerik:LineSeries.ValueBinding>
+                        <telerik:PropertyNameDataPointBinding PropertyName="pos1"/>
+                    </telerik:LineSeries.ValueBinding>
+                    <telerik:LineSeries.CategoryBinding>
+                        <telerik:PropertyNameDataPointBinding PropertyName="name"/>
+                    </telerik:LineSeries.CategoryBinding>
+                </telerik:LineSeries>
             </telerik:RadCartesianChart>
 
         </Grid>
+        -->
     </Grid>
 
 </Page>
