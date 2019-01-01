@@ -1,5 +1,6 @@
 # OFN
-TO DO LIST:
-https://github.com/ailon/UWPQuickCharts -- nie działa, Fabian
-
-F: https://github.com/telerik/UI-For-UWP -- działa - udało się wyśietlić zapisany w xml wykres
+F: - All calculations on FuzzyNumber works 
+   - Drawing for adding works
+   - Will improve drawing for  - * /
+   - Might improve start Axis drawing for more detalis
+   
