@@ -45,9 +45,16 @@ namespace OFN
 
             //line to set "1"
             setOneLine.X1 = 940;
-            setOneLine.Y1 = VALUE_OF_ONE; // number 1 value
+            setOneLine.Y1 = VALUE_OF_ONE;
             setOneLine.X2 = 980;
             setOneLine.Y2 = VALUE_OF_ONE;
+
+            displayText(canvas, "1", 920, 185);
+            displayText(canvas, "0", 955, 400);
+            displayText(canvas, "X", 1880, 400);
+            displayText(canvas, "Y", 920, 100);
+            displayText(canvas, ">", 1890, 384);
+            displayText(canvas, @"/\", 952, 91);
 
 
             canvas.Children.Add(horizontalLine);
@@ -56,12 +63,12 @@ namespace OFN
 
         }
 
-        public void drawFuzzyNumber(Canvas canvas, FuzzyNumber fuzzyNumber, Windows.UI.Color colorBrush)
+        public void drawFuzzyNumber(Canvas canvas, FuzzyNumber fuzzyNumber, Color colorBrush)
         {
-            //double scale = 960 / FuzzyNumber.findMaxValueOfFuzzyNumber(fuzzyNumber);
             var upLine = new Line();
             var horizontalLine = new Line();
             var downLine = new Line();
+
             upLine.Stroke = new SolidColorBrush(colorBrush);
             upLine.StrokeThickness = 3;
             horizontalLine.Stroke = new SolidColorBrush(colorBrush);
@@ -91,11 +98,11 @@ namespace OFN
             canvas.Children.Add(downLine);
         }
 
-        // returns value referenced to point [0,0] (X)
+        // returns value referenced to point [0,0] (X), scales canvas
         private double converterX(double XnumberToConvert, FuzzyNumber fuzzyNumber)
         {
             double tempXnumberToConvert = 0;
-            double maxFromFuzzyNumber = FuzzyNumber.findMaxValueOfFuzzyNumber(fuzzyNumber);
+            double maxFromFuzzyNumber = Math.Abs(FuzzyNumber.findMaxValueOfFuzzyNumber(fuzzyNumber));
             double scale = 0;
 
             if (scaleClass == 0)
@@ -130,6 +137,17 @@ namespace OFN
         public void clearCanvas(Canvas canvas)
         {
             canvas.Children.Clear();
+        }
+
+        private static void displayText(Canvas canvas, string text, int x, int y)
+        {
+            TextBlock textBlock = new TextBlock();
+            textBlock.Text = text;
+            textBlock.FontSize = 20;
+            textBlock.Foreground = new SolidColorBrush(Colors.Black);
+            Canvas.SetLeft(textBlock, x);
+            Canvas.SetTop(textBlock, y);
+            canvas.Children.Add(textBlock);
         }
 
     }

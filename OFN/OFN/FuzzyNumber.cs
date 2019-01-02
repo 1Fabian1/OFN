@@ -98,7 +98,7 @@ namespace OFN
 
         public override string ToString()
         {
-            return pos1.ToString() + ", " + pos2.ToString() + ", " + pos3.ToString() + ", " + pos4.ToString();
+            return pos1.ToString("N2") + ", " + pos2.ToString("N2") + ", " + pos3.ToString("N2") + ", " + pos4.ToString("N2");
         }
 
         private List<double> CalculateUP(double pos1, double pos2, int discretizationParameter)

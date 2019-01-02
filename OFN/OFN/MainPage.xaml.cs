@@ -34,8 +34,11 @@ namespace OFN
 
         public MainPage()
         {
+            
 
             this.InitializeComponent();
+
+            ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             ManualDrawer drawer = new ManualDrawer();
             drawer.drawAxis(CanvaField);
 
