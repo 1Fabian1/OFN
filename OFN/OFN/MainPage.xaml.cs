@@ -32,7 +32,6 @@ namespace OFN
 
         FuzzyNumber resultToContinue = new FuzzyNumber();
 
-
         public class Test
         {
             public string name { get; set; }
@@ -41,30 +40,30 @@ namespace OFN
 
         public MainPage()
         {
+            
 
             this.InitializeComponent();
-
             comboBoxPartOfPolynomial.Items.Add("Up");
             comboBoxPartOfPolynomial.Items.Add("Down");
-            
+
+            ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
+            ManualDrawer drawer = new ManualDrawer();
+            drawer.drawAxis(CanvaField);
+
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
-
-            Debug.WriteLine("Trochę działań - podgląd w debugu");
-            FuzzyNumber f1 = new FuzzyNumber(1, 2, 30, 1);
-            FuzzyNumber f2 = new FuzzyNumber(1, 2, 3, 4);
-            FuzzyNumber result = new FuzzyNumber(0, 0, 0, 0);
-            Debug.WriteLine("f1: " + f1.ToString());
-            Debug.WriteLine("f2: " + f2.ToString());
-            result = FNAlgebra.divideAB(f1, f2);
-            Debug.WriteLine("result: " + result.ToString());
-
 
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
+
+            FuzzyNumber result = new FuzzyNumber();
+            ManualDrawer drawer = new ManualDrawer();
+            drawer.clearCanvas(CanvaField);
+            drawer.drawAxis(CanvaField);
+
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
             double a3; double.TryParse(textBoxk3pA.Text.ToString(), out a3);
@@ -73,36 +72,41 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
-            FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
-            textBoxOutput.Text = "{ " + result.ToString() + "}";
-                    
+            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
+            textBoxOutput.Text = "{ " + result.ToString() + "}";               
+
+            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
+            /*
+            FuzzyNumber testFuzzy = new FuzzyNumber(2, 5, 10, 150, 10);
+            FuzzyNumber testFuzzy2 = new FuzzyNumber(2, 5, 30, 90, 10);
+            FuzzyNumber testFuzzy3 = new FuzzyNumber(4, 10, 40, 1540, 10);
+            double test = 0;
+            test = FuzzyNumber.findMaxValueOfFuzzyNumber(testFuzzy);
+
+            drawer.drawA(CanvaField, testFuzzy3, Colors.Red);
+            drawer.drawA(CanvaField, testFuzzy, Colors.Blue);
+            drawer.drawA(CanvaField, testFuzzy2, Colors.Green);
+            */
+
+
         }
 
-
-        private void Canva_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-        {
-            var line = new Line();
-            line.Stroke = new SolidColorBrush(Colors.Black);
-            line.StrokeThickness = 3;
-            //line.Width = 50;
-            line.X1 = 20;
-            line.Y1 = 0;
-            line.X2 = 150;
-            line.Y2 = 100;
-
-            Canvas.SetTop(line, 50);
-            Canvas.SetLeft(line, 50);
-
-
-            //CanvasGrid.Children.Add(line);
-        }
 
         private void ButtonSubtract_Click(object sender, RoutedEventArgs e)
         {
+            FuzzyNumber result = new FuzzyNumber();
+            ManualDrawer drawer = new ManualDrawer();
+            drawer.clearCanvas(CanvaField);
+            drawer.drawAxis(CanvaField);
+
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
             double a3; double.TryParse(textBoxk3pA.Text.ToString(), out a3);
@@ -111,16 +115,25 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
-            FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.subtractAminusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
+
+            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
         }
 
         private void ButtonMultiply_Click(object sender, RoutedEventArgs e)
         {
+            FuzzyNumber result = new FuzzyNumber();
+            ManualDrawer drawer = new ManualDrawer();
+            drawer.clearCanvas(CanvaField);
+            drawer.drawAxis(CanvaField);
+
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
             double a3; double.TryParse(textBoxk3pA.Text.ToString(), out a3);
@@ -129,16 +142,25 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
-            FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.multiplyAB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
+
+            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
         }
 
         private void ButtonDivide_Click(object sender, RoutedEventArgs e)
         {
+            FuzzyNumber result = new FuzzyNumber();
+            ManualDrawer drawer = new ManualDrawer();
+            drawer.clearCanvas(CanvaField);
+            drawer.drawAxis(CanvaField);
+
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
             double a3; double.TryParse(textBoxk3pA.Text.ToString(), out a3);
@@ -147,16 +169,22 @@ namespace OFN
             double b2; double.TryParse(textBox2mB.Text.ToString(), out b2);
             double b3; double.TryParse(textBox3pB.Text.ToString(), out b3);
             double b4; double.TryParse(textBox4PB.Text.ToString(), out b4);
-            FuzzyNumber result = new FuzzyNumber();
-            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4);
-            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4);
+            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+            FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
+            FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.divideAB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
+
+            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
+            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
         }
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
+            ManualDrawer drawer = new ManualDrawer();
+
             textBox1LA.Text = "";
             textBox2mA.Text = "";
             textBoxk3pA.Text = "";
@@ -165,6 +193,13 @@ namespace OFN
             textBox2mB.Text = "";
             textBox3pB.Text = "";
             textBox4PB.Text = "";
+            textBoxOutput.Text = "";
+            textBoxDiscretization.Text = "";
+
+            drawer.clearCanvas(CanvaField);
+            drawer.drawAxis(CanvaField);
+
+
         }
 
         private void ButtonCountFromResult_Click(object sender, RoutedEventArgs e)
@@ -277,14 +312,16 @@ namespace OFN
 
         }
 
+
         private void ButtonMultiplyPolynomials_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ButtonDividePolynomials_Click(object sender, RoutedEventArgs e)
         {
-
         }
+
+
+
     }
 }

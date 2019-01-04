@@ -34,6 +34,7 @@
             <Button Name="buttonClear" Click="ButtonClear_Click" Margin="520,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Clear" FontSize="40"/>
             <Button Name="buttonCountFromResult" Click="ButtonCountFromResult_Click" Margin="520,140,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Count from Result" FontSize="25"/>
             <TextBox Name="textBoxOutput" Text=" " Margin="10,300,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Result" FontSize="20" />
+            <TextBox Name="textBoxDiscretization" Margin="520,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Discretization Parameter" FontSize="15"/>
         </Grid>
 
 
@@ -84,6 +85,35 @@
 
             </Grid>
         </Grid>
+
+        <!-- https://www.youtube.com/watch?v=cnkrkB-I-q4  yt do wykresów -->
+
+        <Grid Grid.Row="1">
+            <Canvas Name="CanvaField" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="1920">
+                
+            </Canvas>
+        </Grid>
+        <!--
+        <Grid x:Name="GraphicRepresentationGrid" Grid.Row="1" Background="AliceBlue">
+            <telerik:RadCartesianChart PaletteName="DefaultLight">
+                <telerik:RadCartesianChart.HorizontalAxis>
+                    <telerik:CategoricalAxis />
+                </telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:RadCartesianChart.VerticalAxis>
+                    <telerik:LinearAxis />
+                </telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LineSeries ItemsSource="{Binding}">
+                    <telerik:LineSeries.ValueBinding>
+                        <telerik:PropertyNameDataPointBinding PropertyName="pos1"/>
+                    </telerik:LineSeries.ValueBinding>
+                    <telerik:LineSeries.CategoryBinding>
+                        <telerik:PropertyNameDataPointBinding PropertyName="name"/>
+                    </telerik:LineSeries.CategoryBinding>
+                </telerik:LineSeries>
+            </telerik:RadCartesianChart>
+
+        </Grid>
+        -->
 
     </Grid>
 
