@@ -19,6 +19,7 @@ namespace OFN
         private double valueX8;
         private double valueX9;
         private double valueX10;
+        private string test;
 
         public Polynomial()
         {
@@ -33,6 +34,7 @@ namespace OFN
             this.valueX8 = 0;
             this.valueX9 = 0;
             this.valueX10 = 0;
+            this.test = "";
         }
 
         public Polynomial(double freeValue, double valueX, double valueX2, double valueX3, double valueX4, double valueX5, double valueX6, double valueX7, double valueX8, double valueX9, double valueX10)
@@ -61,6 +63,7 @@ namespace OFN
         public double ValueX8 { get => valueX8; set => valueX8 = value; }
         public double ValueX9 { get => valueX9; set => valueX9 = value; }
         public double ValueX10 { get => valueX10; set => valueX10 = value; }
+        public string Test { get => test; set => test = value; }
 
         public override string ToString()
         {
