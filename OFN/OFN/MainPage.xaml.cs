@@ -55,6 +55,7 @@ namespace OFN
             lineSeries.Points.Add(new OxyPlot.DataPoint(3, 1));
             lineSeries.Points.Add(new OxyPlot.DataPoint(5, 1));
             lineSeries.Points.Add(new OxyPlot.DataPoint(6, 0));
+
             
             lineSeries.Color = OxyColor.FromRgb(100, 200, 100);
             lineSeries.Title = "Test";
@@ -98,8 +99,8 @@ namespace OFN
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
-            textBoxOutput.Text = "{ " + result.ToString() + "}";               
-
+            textBoxOutput.Text = "{ " + result.ToString() + "}";
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Test"));
             drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);

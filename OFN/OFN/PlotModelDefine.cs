@@ -19,10 +19,10 @@ namespace OFN
             plotModel.LegendFontSize = 24;
             
             var XlinearAxis = new LinearAxis();
-            XlinearAxis.Maximum = 500;
-            XlinearAxis.Minimum = -500;
-            XlinearAxis.AbsoluteMaximum = 500;
-            XlinearAxis.AbsoluteMinimum = -500;
+            XlinearAxis.Maximum = 2;
+            XlinearAxis.Minimum = -2;
+            XlinearAxis.AbsoluteMaximum = 2;
+            XlinearAxis.AbsoluteMinimum = -2;
             XlinearAxis.PositionAtZeroCrossing = true;
 
             XlinearAxis.AxislineStyle = LineStyle.LongDash;
@@ -62,6 +62,20 @@ namespace OFN
             };
 
             return functionSeries;
+        }
+
+        public static LineSeries DrawFuzzyNumber(FuzzyNumber fuzzyNumber, string title)
+        {
+
+            LineSeries lineSeries = new LineSeries();
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos1, 0));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos2, 1));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos3, 1));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos4, 0));
+
+
+            return lineSeries;
+
         }
 
 }
