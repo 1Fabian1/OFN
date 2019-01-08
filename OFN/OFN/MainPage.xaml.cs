@@ -48,8 +48,18 @@ namespace OFN
             comboBoxPartOfPolynomial.Items.Add("Up");
             comboBoxPartOfPolynomial.Items.Add("Down");
             plotView.Model = PlotModelDefine.ZeroCrossing();
+
+            //Rysowanie po punktach
+            OxyPlot.Series.LineSeries lineSeries = new OxyPlot.Series.LineSeries();
+            lineSeries.Points.Add(new OxyPlot.DataPoint(3, 0.1));
+            lineSeries.Points.Add(new OxyPlot.DataPoint(5, 0.3));
+            lineSeries.Points.Add(new OxyPlot.DataPoint(4, 0.8));
+            lineSeries.Color = OxyColor.FromRgb(100, 200, 100);
+            plotView.Model.Series.Add(lineSeries);
+
+            //Rysowanie funkcji
             plotView.Model.Series.Add(new FunctionSeries(Math.Cos, 0, 40, 0.1, "cox(x)"));
-            //plotView.Model.Series.Add(new LineSeries(new DataPoint(3,3)));
+            
 
             ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             ManualDrawer drawer = new ManualDrawer();
