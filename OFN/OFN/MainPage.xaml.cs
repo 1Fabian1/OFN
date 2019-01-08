@@ -51,15 +51,19 @@ namespace OFN
 
             //Rysowanie po punktach
             OxyPlot.Series.LineSeries lineSeries = new OxyPlot.Series.LineSeries();
-            lineSeries.Points.Add(new OxyPlot.DataPoint(3, 0.1));
-            lineSeries.Points.Add(new OxyPlot.DataPoint(5, 0.3));
-            lineSeries.Points.Add(new OxyPlot.DataPoint(4, 0.8));
+            lineSeries.Points.Add(new OxyPlot.DataPoint());
+            lineSeries.Points.Add(new OxyPlot.DataPoint(3, 1));
+            lineSeries.Points.Add(new OxyPlot.DataPoint(5, 1));
+            lineSeries.Points.Add(new OxyPlot.DataPoint(6, 0));
+            
             lineSeries.Color = OxyColor.FromRgb(100, 200, 100);
-            plotView.Model.Series.Add(lineSeries);
+            lineSeries.Title = "Test";
+            //plotView.Model.Series.Add(lineSeries);
 
             //Rysowanie funkcji
-            plotView.Model.Series.Add(new FunctionSeries(Math.Cos, 0, 40, 0.1, "cox(x)"));
-            
+            //plotView.Model.Series.Add(new FunctionSeries(Math.Cos, 0, 40, 0.1, "cox(x)"));
+            
+
 
             ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             ManualDrawer drawer = new ManualDrawer();
@@ -269,8 +273,12 @@ namespace OFN
             Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
 
             polynomialResult = PolynomialAlgebra.addPolynomialAB(polynomialA, polynomialB);
+            plotView.Model.Series.Clear();
 
-            if(comboBoxPartOfPolynomial.SelectedItem != null)
+
+            plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Tytył"));
+
+            if (comboBoxPartOfPolynomial.SelectedItem != null)
             {           
                 if (comboBoxPartOfPolynomial.SelectedItem.ToString().Equals("Up"))
                 {
@@ -316,7 +324,7 @@ namespace OFN
             Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
 
             polynomialResult = PolynomialAlgebra.substractPolynomialAB(polynomialA, polynomialB);
-
+            
             if (comboBoxPartOfPolynomial.SelectedItem != null)
             {
                 if (comboBoxPartOfPolynomial.SelectedItem.ToString().Equals("Up"))
