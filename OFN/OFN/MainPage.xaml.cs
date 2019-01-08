@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OxyPlot;
+using OxyPlot.Series;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -40,11 +42,14 @@ namespace OFN
 
         public MainPage()
         {
-            
+
 
             this.InitializeComponent();
             comboBoxPartOfPolynomial.Items.Add("Up");
             comboBoxPartOfPolynomial.Items.Add("Down");
+            plotView.Model = PlotModelDefine.ZeroCrossing();
+            plotView.Model.Series.Add(new FunctionSeries(Math.Cos, 0, 40, 0.1, "cox(x)"));
+            //plotView.Model.Series.Add(new LineSeries(new DataPoint(3,3)));
 
             ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             ManualDrawer drawer = new ManualDrawer();
@@ -224,6 +229,8 @@ namespace OFN
 
         private void ButtonAddPolynomials_Click(object sender, RoutedEventArgs e)
         {
+            ManualDrawer drawer = new ManualDrawer();
+
             double freeValueA, freeValueB;
             Double.TryParse(textBoxFreeValueA.Text, out freeValueA); Double.TryParse(textBoxFreeValueB.Text, out freeValueB);
             double valueXA, valueXB;
@@ -264,6 +271,8 @@ namespace OFN
                     textBoxResultDownPolynomail.Text = polynomialResult.ToString();
                 }
             }
+
+
 
         }
 

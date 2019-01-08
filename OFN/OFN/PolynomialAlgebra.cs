@@ -221,7 +221,15 @@ namespace OFN
             polyB[8] = polynomialB.ValueX8;
             polyB[9] = polynomialB.ValueX9;
             polyB[10] = polynomialB.ValueX10;
+            //TODO:
+            //
+            //Long Division Algorithm
 
+            //
+
+            //
+
+            //
 
 
 

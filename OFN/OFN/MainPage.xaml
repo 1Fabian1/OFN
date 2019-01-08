@@ -4,8 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:telerik="using:Telerik.UI.Xaml.Controls.Chart"
-    xmlns:telerik1="using:Telerik.Charting"
+    xmlns:oxyPlot="using:OxyPlot.Windows"
+    xmlns:oxy1="using:OxyPlot.Series"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -89,31 +89,13 @@
         <!-- https://www.youtube.com/watch?v=cnkrkB-I-q4  yt do wykresów -->
 
         <Grid Grid.Row="1">
-            <Canvas Name="CanvaField" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="1920">
+            <Canvas Name="CanvaField" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="10">
                 
             </Canvas>
+            <oxyPlot:PlotView x:Name="plotView" Margin="0,0,0,10" Height="300" Width="1920">
+                
+            </oxyPlot:PlotView>
         </Grid>
-        <!--
-        <Grid x:Name="GraphicRepresentationGrid" Grid.Row="1" Background="AliceBlue">
-            <telerik:RadCartesianChart PaletteName="DefaultLight">
-                <telerik:RadCartesianChart.HorizontalAxis>
-                    <telerik:CategoricalAxis />
-                </telerik:RadCartesianChart.HorizontalAxis>
-                <telerik:RadCartesianChart.VerticalAxis>
-                    <telerik:LinearAxis />
-                </telerik:RadCartesianChart.VerticalAxis>
-                <telerik:LineSeries ItemsSource="{Binding}">
-                    <telerik:LineSeries.ValueBinding>
-                        <telerik:PropertyNameDataPointBinding PropertyName="pos1"/>
-                    </telerik:LineSeries.ValueBinding>
-                    <telerik:LineSeries.CategoryBinding>
-                        <telerik:PropertyNameDataPointBinding PropertyName="name"/>
-                    </telerik:LineSeries.CategoryBinding>
-                </telerik:LineSeries>
-            </telerik:RadCartesianChart>
-
-        </Grid>
-        -->
 
     </Grid>
 

@@ -101,6 +101,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManualDrawer.cs" />
+    <Compile Include="PlotModelDefine.cs" />
     <Compile Include="Polynomial.cs" />
     <Compile Include="PolynomialTextBoxes.cs" />
     <Compile Include="PolynomialAlgebra.cs" />
@@ -135,7 +136,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.9</Version>
-
+    </PackageReference>
+    <PackageReference Include="OxyPlot.Windows">
+      <Version>2.0.0-unstable1035</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
       <Version>1.0.1.2</Version>
