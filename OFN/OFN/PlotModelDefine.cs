@@ -11,13 +11,14 @@ namespace OFN
 {
     class PlotModelDefine
     {
+
         public static PlotModel ZeroCrossing()
         {
             var plotModel = new PlotModel();
             plotModel.PlotAreaBorderThickness = new OxyThickness(0.0);
             plotModel.PlotMargins = new OxyThickness(10);
             plotModel.LegendFontSize = 24;
-            
+
             var XlinearAxis = new LinearAxis();
             XlinearAxis.Maximum = 2;
             XlinearAxis.Minimum = -2;
@@ -42,8 +43,44 @@ namespace OFN
             YlinearAxis.TickStyle = TickStyle.Crossing;
             YlinearAxis.AxislineStyle = LineStyle.LongDash;
             plotModel.Axes.Add(YlinearAxis);
-            
-           
+
+
+            return plotModel;
+        }
+
+        public static PlotModel zeroCrossing(int scale)
+        {
+            var plotModel = new PlotModel();
+            plotModel.PlotAreaBorderThickness = new OxyThickness(0.0);
+            plotModel.PlotMargins = new OxyThickness(10);
+            plotModel.LegendFontSize = 24;
+
+            var XlinearAxis = new LinearAxis();
+            XlinearAxis.Maximum = 2;
+            XlinearAxis.Minimum = -2;
+            XlinearAxis.AbsoluteMaximum = 2;
+            XlinearAxis.AbsoluteMinimum = -2;
+            XlinearAxis.PositionAtZeroCrossing = true;
+
+            XlinearAxis.AxislineStyle = LineStyle.LongDash;
+            XlinearAxis.TickStyle = TickStyle.Crossing;
+            XlinearAxis.Title = "x";
+            XlinearAxis.Tag = "x";
+
+            plotModel.Axes.Add(XlinearAxis);
+
+            var YlinearAxis = new LinearAxis();
+            YlinearAxis.Maximum = scale;
+            YlinearAxis.Minimum = -scale;
+            YlinearAxis.AbsoluteMaximum = scale;
+            YlinearAxis.AbsoluteMinimum = -scale;
+            YlinearAxis.Position = AxisPosition.Bottom;
+            YlinearAxis.PositionAtZeroCrossing = true;
+            YlinearAxis.TickStyle = TickStyle.Crossing;
+            YlinearAxis.AxislineStyle = LineStyle.LongDash;
+            plotModel.Axes.Add(YlinearAxis);
+
+
             return plotModel;
         }
 
@@ -58,13 +95,13 @@ namespace OFN
             {
                 TextColor = OxyColor.FromRgb(100, 100, 100),
                 MarkerSize = 10,
-               
+
             };
 
             return functionSeries;
         }
 
-        public static LineSeries DrawFuzzyNumber(FuzzyNumber fuzzyNumber, string title)
+        public static LineSeries drawFuzzyNumber(FuzzyNumber fuzzyNumber, string title)
         {
 
             LineSeries lineSeries = new LineSeries();
@@ -73,10 +110,8 @@ namespace OFN
             lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos3, 1));
             lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos4, 0));
 
-
             return lineSeries;
-
         }
 
-}
+    }
 }

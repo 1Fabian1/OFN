@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Shapes;
 
 namespace OFN
 {
+
     class ManualDrawer
     {
         //value of number "one" on chart - max value

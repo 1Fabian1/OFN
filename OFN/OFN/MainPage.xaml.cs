@@ -34,12 +34,6 @@ namespace OFN
 
         FuzzyNumber resultToContinue = new FuzzyNumber();
 
-        public class Test
-        {
-            public string name { get; set; }
-            public int amount { get; set; }
-        }
-
         public MainPage()
         {
 
@@ -56,37 +50,31 @@ namespace OFN
             lineSeries.Points.Add(new OxyPlot.DataPoint(5, 1));
             lineSeries.Points.Add(new OxyPlot.DataPoint(6, 0));
 
-            
+
             lineSeries.Color = OxyColor.FromRgb(100, 200, 100);
             lineSeries.Title = "Test";
             //plotView.Model.Series.Add(lineSeries);
 
             //Rysowanie funkcji
             //plotView.Model.Series.Add(new FunctionSeries(Math.Cos, 0, 40, 0.1, "cox(x)"));
-            
+
 
 
             ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
-            ManualDrawer drawer = new ManualDrawer();
-            drawer.drawAxis(CanvaField);
 
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
-            
+
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            plotView.Model.Series.Clear();
-            FuzzyNumber result = new FuzzyNumber();
-            //ManualDrawer drawer = new ManualDrawer();
-            //drawer.clearCanvas(CanvaField);
-            //drawer.drawAxis(CanvaField);
-
 
             
-
+            plotView.Model.Series.Clear();
+            FuzzyNumber result = new FuzzyNumber();
+            int scale = 0;
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -102,31 +90,13 @@ namespace OFN
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
-            //drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
             textBoxOutput.Text = "{ " + result.ToString() + "}";
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA,fuzzyNumberB,result);
+            plotView.Model = PlotModelDefine.zeroCrossing(scale+5);
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
             plotView.InvalidatePlot(true);  //refreshes plotView
-
-            /*
-            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
-            */
-
-            /*
-           FuzzyNumber testFuzzy = new FuzzyNumber(2, 5, 10, 150, 10);
-           FuzzyNumber testFuzzy2 = new FuzzyNumber(2, 5, 30, 90, 10);
-           FuzzyNumber testFuzzy3 = new FuzzyNumber(4, 10, 40, 1540, 10);
-           double test = 0;
-           test = FuzzyNumber.findMaxValueOfFuzzyNumber(testFuzzy);
-
-           drawer.drawA(CanvaField, testFuzzy3, Colors.Red);
-           drawer.drawA(CanvaField, testFuzzy, Colors.Blue);
-           drawer.drawA(CanvaField, testFuzzy2, Colors.Green);
-           */
-
 
         }
 
@@ -135,11 +105,7 @@ namespace OFN
         {
             plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
-            /*
-            ManualDrawer drawer = new ManualDrawer();
-            drawer.clearCanvas(CanvaField);
-            drawer.drawAxis(CanvaField);
-            */
+            int scale = 0;
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -155,29 +121,21 @@ namespace OFN
             result = FNAlgebra.subtractAminusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
+            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
+            plotView.Model = PlotModelDefine.zeroCrossing(scale + 5);
 
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
             plotView.InvalidatePlot(true);
 
-            /*
-            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
-            */
         }
 
         private void ButtonMultiply_Click(object sender, RoutedEventArgs e)
         {
             plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
-            /*
-            ManualDrawer drawer = new ManualDrawer();
-            drawer.clearCanvas(CanvaField);
-            drawer.drawAxis(CanvaField);
-            */
-
+            int scale = 0;
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -193,28 +151,21 @@ namespace OFN
             result = FNAlgebra.multiplyAB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
+            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
+            plotView.Model = PlotModelDefine.zeroCrossing(scale + 5);
 
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
             plotView.InvalidatePlot(true);
 
-            /*
-            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
-            */
         }
 
         private void ButtonDivide_Click(object sender, RoutedEventArgs e)
         {
             plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
-            /*
-            ManualDrawer drawer = new ManualDrawer();
-            drawer.clearCanvas(CanvaField);
-            drawer.drawAxis(CanvaField);
-            */
+            int scale = 0;
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -230,23 +181,19 @@ namespace OFN
             result = FNAlgebra.divideAB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
+            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
+            plotView.Model = PlotModelDefine.zeroCrossing(scale + 5);
 
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
             plotView.InvalidatePlot(true);
 
-            /*
-            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
-            drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
-            */
         }
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
-            ManualDrawer drawer = new ManualDrawer();
-
+            
             textBox1LA.Text = "";
             textBox2mA.Text = "";
             textBoxk3pA.Text = "";
@@ -257,10 +204,7 @@ namespace OFN
             textBox4PB.Text = "";
             textBoxOutput.Text = "";
             textBoxDiscretization.Text = "";
-
-            drawer.clearCanvas(CanvaField);
-            drawer.drawAxis(CanvaField);
-
+            plotView.Model.Series.Clear();
 
         }
 
@@ -286,7 +230,6 @@ namespace OFN
 
         private void ButtonAddPolynomials_Click(object sender, RoutedEventArgs e)
         {
-            ManualDrawer drawer = new ManualDrawer();
 
             double freeValueA, freeValueB;
             Double.TryParse(textBoxFreeValueA.Text, out freeValueA); Double.TryParse(textBoxFreeValueB.Text, out freeValueB);
@@ -322,7 +265,7 @@ namespace OFN
             plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Tytył"));
 
             if (comboBoxPartOfPolynomial.SelectedItem != null)
-            {           
+            {
                 if (comboBoxPartOfPolynomial.SelectedItem.ToString().Equals("Up"))
                 {
                     textBoxResultUpPolynomail.Text = polynomialResult.ToString();
@@ -367,7 +310,7 @@ namespace OFN
             Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
 
             polynomialResult = PolynomialAlgebra.substractPolynomialAB(polynomialA, polynomialB);
-            
+
             if (comboBoxPartOfPolynomial.SelectedItem != null)
             {
                 if (comboBoxPartOfPolynomial.SelectedItem.ToString().Equals("Up"))

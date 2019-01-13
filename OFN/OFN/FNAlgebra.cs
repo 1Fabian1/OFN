@@ -112,7 +112,7 @@ namespace OFN
             return fuzzy;
         }
 
-        //For now it may throw an null exception
+        //For now it may throw a null exception
         private static FuzzyNumber divideABpriv(FuzzyNumber fuzzyNumberA, FuzzyNumber fuzzyNumberB)
         {
             FuzzyNumber fuzzy = new FuzzyNumber();

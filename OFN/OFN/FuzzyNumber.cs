@@ -160,9 +160,36 @@ namespace OFN
             return y;
         }
 
-        public static double findMaxValueOfFuzzyNumber(FuzzyNumber fuzzyNumber)
+        public int findMaxValueOfFuzzyNumber(FuzzyNumber fuzzyNumberA, FuzzyNumber fuzzyNumberB, FuzzyNumber fuzzyNumberResult)
         {
             double maxVal = double.MinValue;
+            int result;
+            List<double> listOfValues = new List<double>();
+            listOfValues.Add(fuzzyNumberA.pos1);
+            listOfValues.Add(fuzzyNumberA.pos2);
+            listOfValues.Add(fuzzyNumberA.pos3);
+            listOfValues.Add(fuzzyNumberA.pos4);
+            listOfValues.Add(fuzzyNumberB.pos1);
+            listOfValues.Add(fuzzyNumberB.pos2);
+            listOfValues.Add(fuzzyNumberB.pos3);
+            listOfValues.Add(fuzzyNumberB.pos4);
+            listOfValues.Add(fuzzyNumberResult.pos1);
+            listOfValues.Add(fuzzyNumberResult.pos2);
+            listOfValues.Add(fuzzyNumberResult.pos3);
+            listOfValues.Add(fuzzyNumberResult.pos4);
+
+            listOfValues.Sort();
+            maxVal = listOfValues.Max();
+
+            result = (int)maxVal;
+
+            return result;
+        }
+
+        public static int findMaxValueOfFuzzyNumber(FuzzyNumber fuzzyNumber)
+        {
+            double maxVal = double.MinValue;
+            int result;
             List<double> listOfValues = new List<double>();
             listOfValues.Add(fuzzyNumber.pos1);
             listOfValues.Add(fuzzyNumber.pos2);
@@ -170,10 +197,11 @@ namespace OFN
             listOfValues.Add(fuzzyNumber.pos4);
 
             listOfValues.Sort();
+            maxVal = listOfValues.Max();
 
-            maxVal = listOfValues[3];
+            result = (int)maxVal;
 
-            return maxVal;
+            return result;
         }
 
     }
