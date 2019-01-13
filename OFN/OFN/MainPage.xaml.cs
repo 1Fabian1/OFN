@@ -78,11 +78,15 @@ namespace OFN
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
-            ManualDrawer drawer = new ManualDrawer();
-            drawer.clearCanvas(CanvaField);
-            drawer.drawAxis(CanvaField);
+            //ManualDrawer drawer = new ManualDrawer();
+            //drawer.clearCanvas(CanvaField);
+            //drawer.drawAxis(CanvaField);
+
+
+            
+
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -98,23 +102,30 @@ namespace OFN
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
-            drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
+            //drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
             textBoxOutput.Text = "{ " + result.ToString() + "}";
-            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Test"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            plotView.InvalidatePlot(true);  //refreshes plotView
+
+            /*
             drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
-            /*
-            FuzzyNumber testFuzzy = new FuzzyNumber(2, 5, 10, 150, 10);
-            FuzzyNumber testFuzzy2 = new FuzzyNumber(2, 5, 30, 90, 10);
-            FuzzyNumber testFuzzy3 = new FuzzyNumber(4, 10, 40, 1540, 10);
-            double test = 0;
-            test = FuzzyNumber.findMaxValueOfFuzzyNumber(testFuzzy);
-
-            drawer.drawA(CanvaField, testFuzzy3, Colors.Red);
-            drawer.drawA(CanvaField, testFuzzy, Colors.Blue);
-            drawer.drawA(CanvaField, testFuzzy2, Colors.Green);
             */
+
+            /*
+           FuzzyNumber testFuzzy = new FuzzyNumber(2, 5, 10, 150, 10);
+           FuzzyNumber testFuzzy2 = new FuzzyNumber(2, 5, 30, 90, 10);
+           FuzzyNumber testFuzzy3 = new FuzzyNumber(4, 10, 40, 1540, 10);
+           double test = 0;
+           test = FuzzyNumber.findMaxValueOfFuzzyNumber(testFuzzy);
+
+           drawer.drawA(CanvaField, testFuzzy3, Colors.Red);
+           drawer.drawA(CanvaField, testFuzzy, Colors.Blue);
+           drawer.drawA(CanvaField, testFuzzy2, Colors.Green);
+           */
 
 
         }
@@ -122,10 +133,13 @@ namespace OFN
 
         private void ButtonSubtract_Click(object sender, RoutedEventArgs e)
         {
+            plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
+            /*
             ManualDrawer drawer = new ManualDrawer();
             drawer.clearCanvas(CanvaField);
             drawer.drawAxis(CanvaField);
+            */
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -142,17 +156,28 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
 
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            plotView.InvalidatePlot(true);
+
+            /*
             drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
+            */
         }
 
         private void ButtonMultiply_Click(object sender, RoutedEventArgs e)
         {
+            plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
+            /*
             ManualDrawer drawer = new ManualDrawer();
             drawer.clearCanvas(CanvaField);
             drawer.drawAxis(CanvaField);
+            */
+
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -169,17 +194,27 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
 
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            plotView.InvalidatePlot(true);
+
+            /*
             drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
+            */
         }
 
         private void ButtonDivide_Click(object sender, RoutedEventArgs e)
         {
+            plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
+            /*
             ManualDrawer drawer = new ManualDrawer();
             drawer.clearCanvas(CanvaField);
             drawer.drawAxis(CanvaField);
+            */
 
             double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
             double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
@@ -196,9 +231,16 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
 
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberA, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(fuzzyNumberB, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.DrawFuzzyNumber(result, "Result"));
+            plotView.InvalidatePlot(true);
+
+            /*
             drawer.drawFuzzyNumber(CanvaField, result, Colors.Red);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberA, Colors.Blue);
             drawer.drawFuzzyNumber(CanvaField, fuzzyNumberB, Colors.Green);
+            */
         }
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
