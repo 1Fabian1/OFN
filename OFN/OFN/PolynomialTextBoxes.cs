@@ -7,21 +7,23 @@ using Windows.UI.Xaml.Controls;
 using System.IO;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using System.Text.RegularExpressions;
+
 namespace OFN
 {
     class PolynomialTextBoes
     {
-        
+
         List<TextBox> listOfTextBoxes = new List<TextBox>();
         public async void CreateTextBoxes(TextBox textBoxNumberTextBoxes, Grid polynomialGrid)
-        {           
+        {
             int numberOfTextBoxes = 0;
             var dialog = new MessageDialog("Stopień wielomianu musi być liczbą całkowitą i nie większą niż 10.");
 
             foreach (TextBox children in polynomialGrid.Children)
             {
                 listOfTextBoxes.Add(children);
-                
+
             }
             System.Diagnostics.Debug.Write(listOfTextBoxes.Count().ToString());
             for (int i = 2; i <= listOfTextBoxes.Count() - 1; i++)
@@ -39,13 +41,13 @@ namespace OFN
             {
                 if (!textBoxNumberTextBoxes.Text.Equals(""))
                 {
-                    
+
                     await dialog.ShowAsync();
                     return;
                 }
-                return;            
+                return;
             }
-            
+
 
             if (numberOfTextBoxes > 10)
             {
@@ -54,23 +56,41 @@ namespace OFN
             }
             else
             {
-                for(int i=1; i <= numberOfTextBoxes; i++)
+                for (int i = 1; i <= numberOfTextBoxes; i++)
                 {
-                    if(numberOfTextBoxes <= listOfTextBoxes.Count())
-                        listOfTextBoxes[i+1].Visibility = Visibility.Visible;                 
+                    if (numberOfTextBoxes <= listOfTextBoxes.Count())
+                        listOfTextBoxes[i + 1].Visibility = Visibility.Visible;
                 }
-                
-                for(int i = numberOfTextBoxes + 3; i <= listOfTextBoxes.Count(); i++)
+
+                for (int i = numberOfTextBoxes + 3; i <= listOfTextBoxes.Count(); i++)
                 {
                     listOfTextBoxes[i - 1].Text = "";
                 }
-                
+
             }
             listOfTextBoxes.Clear();
-                                 
-           
 
 
+
+
+        }
+
+        public bool checkIfNumber(String textBoxInput)
+        {
+            bool checkIfNumber = false;
+
+            try
+            {
+                if (Regex.IsMatch(textBoxInput, @"^\d+$"))
+                {
+                    checkIfNumber = true;
+                }
+            }
+            catch (Exception e)
+            {
+                checkIfNumber = false;
+            }
+            return checkIfNumber;
         }
     }
 }

@@ -10,6 +10,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
 using Windows.UI;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -71,7 +72,7 @@ namespace OFN
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
 
-            
+
             plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
             int scale = 0;
@@ -91,12 +92,14 @@ namespace OFN
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
-            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA,fuzzyNumberB,result);
-            plotView.Model = PlotModelDefine.ZeroCrossing(scale+5);
+            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
+            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
             plotView.InvalidatePlot(true);  //refreshes plotView
+
+
 
         }
 
@@ -193,7 +196,7 @@ namespace OFN
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
-            
+
             textBox1LA.Text = "";
             textBox2mA.Text = "";
             textBoxk3pA.Text = "";
@@ -407,7 +410,129 @@ namespace OFN
             }
         }
 
+        private void TextBox1LA_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBox1LA.Text.ToString());
+            if (test)
+            {
 
+            }
+            else {
+                textBox1LA.Text = "";
+            }
+        }
 
+        private void TextBox2mA_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBox2mA.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBox2mA.Text = "";
+            }
+        }
+
+        private void TextBoxk3pA_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBoxk3pA.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBoxk3pA.Text = "";
+            }
+        }
+
+        private void TextBox4PA_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBox4PA.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBox4PA.Text = "";
+            }
+        }
+
+        private void TextBoxDiscretization_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBoxDiscretization.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBoxDiscretization.Text = "";
+            }
+        }
+
+        private void TextBox1LB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBox1LB.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBox1LB.Text = "";
+            }
+        }
+
+        private void TextBox2mB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBox2mB.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBox2mB.Text = "";
+            }
+        }
+
+        private void TextBox3pB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBox3pB.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBox3pB.Text = "";
+            }
+        }
+
+        private void TextBox4PB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PolynomialTextBoes boes = new PolynomialTextBoes();
+            bool test = boes.checkIfNumber(textBox4PB.Text.ToString());
+            if (test)
+            {
+
+            }
+            else
+            {
+                textBox4PB.Text = "";
+            }
+        }
     }
 }
