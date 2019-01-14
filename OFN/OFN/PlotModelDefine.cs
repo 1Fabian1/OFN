@@ -48,7 +48,7 @@ namespace OFN
             return plotModel;
         }
 
-        public static PlotModel zeroCrossing(int scale)
+        public static PlotModel ZeroCrossing(int scale)
         {
             var plotModel = new PlotModel();
             plotModel.PlotAreaBorderThickness = new OxyThickness(0.0);

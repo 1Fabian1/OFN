@@ -92,7 +92,7 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA,fuzzyNumberB,result);
-            plotView.Model = PlotModelDefine.zeroCrossing(scale+5);
+            plotView.Model = PlotModelDefine.ZeroCrossing(scale+5);
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
@@ -122,7 +122,7 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            plotView.Model = PlotModelDefine.zeroCrossing(scale + 5);
+            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
 
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
@@ -152,7 +152,7 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            plotView.Model = PlotModelDefine.zeroCrossing(scale + 5);
+            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
 
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
@@ -182,7 +182,7 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            plotView.Model = PlotModelDefine.zeroCrossing(scale + 5);
+            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
 
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
