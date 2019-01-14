@@ -77,8 +77,8 @@ namespace OFN
             FuzzyNumber result = new FuzzyNumber();
             int scale = 0;
 
-            double a1; double.TryParse(textBox1LA.Text.ToString(), out a1);
-            double a2; double.TryParse(textBox2mA.Text.ToString(), out a2);
+            double.TryParse(textBox1LA.Text.ToString(), out double a1);
+            double.TryParse(textBox2mA.Text.ToString(), out double a2);
             double a3; double.TryParse(textBoxk3pA.Text.ToString(), out a3);
             double a4; double.TryParse(textBox4PA.Text.ToString(), out a4);
             double b1; double.TryParse(textBox1LB.Text.ToString(), out b1);

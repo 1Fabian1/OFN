@@ -103,7 +103,7 @@ namespace OFN
             {
                 fuzzy = divideABpriv(fuzzyNumberA, fuzzyNumberB);
             }
-            catch (ArgumentNullException e)
+            catch (Exception e)
             {
                 Debug.WriteLine("Nie dziel przez 0");
                 e.StackTrace.ToString();
@@ -142,11 +142,14 @@ namespace OFN
 
                 return fuzzy;
             }
-            return null;
+            else
+            {
+                return null;
+            }
 
         }
 
-        private static Boolean checkIfNotZero(FuzzyNumber fuzzyNumber)
+        private static bool checkIfNotZero(FuzzyNumber fuzzyNumber)
         {
             if (fuzzyNumber.Pos1 == 0) return false;
             else if (fuzzyNumber.Pos2 == 0) return false;

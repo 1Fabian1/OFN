@@ -35,7 +35,7 @@ namespace OFN
             {
                 numberOfTextBoxes = Int32.Parse(textBoxNumberTextBoxes.Text);
             }
-            catch (Exception e)
+            catch (Exception)
 
 
             {
@@ -86,7 +86,7 @@ namespace OFN
                     checkIfNumber = true;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 checkIfNumber = false;
             }
