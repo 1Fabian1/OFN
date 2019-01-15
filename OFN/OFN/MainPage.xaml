@@ -82,7 +82,7 @@
                 <Button Name="buttonSubstractPolynomials" Click="ButtonSubstractPolynomials_Click" Margin="100,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A - B" FontSize="25"/>
                 <Button Name="buttonMultiplyPolynomials" Click="ButtonMultiplyPolynomials_Click" Margin="200,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A * B" FontSize="25"/>
                 <Button Name="buttonDividePolynomials" Click="ButtonDividePolynomials_Click" Margin="300,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A / B" FontSize="25"/>
-
+                <Button Name="buttonClearPlot" Click="ButtonClearPlot_Click" Margin="400,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Clear" FontSize="25"/>
             </Grid>
         </Grid>
 
