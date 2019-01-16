@@ -11,8 +11,6 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid">
 
-
-
         <Grid x:Name="NormalFNGrid"  Grid.Row="0" Background="#eefefe" VerticalAlignment="Top" Margin="0,0,960,0" HorizontalAlignment="Left" Height="540" Width="960">
 
             <TextBox Name="textBox1LA" Margin="10,30,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15" TextChanged="TextBox1LA_TextChanged"/>
@@ -39,8 +37,8 @@
             <!-- Polynomial A -->
             <TextBlock Name="textBlcokPolynomialHeader" Margin="10,10,0,0" Text="Polynomial Representation"/>
             <ComboBox  Name="comboBoxPartOfPolynomial" Header="Up/Down" Margin="10,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="100" Visibility="Visible"/>
-            <TextBox Name="textBoxResultUpPolynomail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,30,0,0" Header="Result Up" Width="400" Height="60" TextWrapping="Wrap" MaxHeight="300" MaxWidth="400" />
-            <TextBox Name="textBoxResultDownPolynomail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="550,30,0,0" Header="Result Down" Width="400" Height="60" TextWrapping="Wrap" MaxHeight="300" MaxWidth="400" />
+            <TextBox Name="textBoxResultUpPolynomail" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,30,0,0" Header="Result Up" Width="400" Height="60" TextWrapping="Wrap" MaxHeight="300" MaxWidth="400" />
+            <TextBox Name="textBoxResultDownPolynomail" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="550,30,0,0" Header="Result Down" Width="400" Height="60" TextWrapping="Wrap" MaxHeight="300" MaxWidth="400" />
             <Grid Name="PolynomialAFNGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
 
                 <TextBox Name="textBoxDegreeOfPolynomialA" Margin="10,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial A" FontSize="15" Height="60" Width="160" TextChanged="TextBoxDegreeOfPolynomialA_TextChanged"/>
