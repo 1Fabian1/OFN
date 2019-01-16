@@ -91,8 +91,19 @@ namespace OFN
                 }
 
             }
-            
-            for(int i=results.Length - 1; i>=0; i--)
+            polynomial.FreeValue = results[0];
+            polynomial.ValueX = results[1];
+            polynomial.ValueX2 = results[2];
+            polynomial.ValueX3 = results[3];
+            polynomial.ValueX4 = results[4];
+            polynomial.ValueX5 = results[5];
+            polynomial.ValueX6 = results[6];
+            polynomial.ValueX7 = results[7];
+            polynomial.ValueX8 = results[8];
+            polynomial.ValueX9 = results[9];
+            polynomial.ValueX10 = results[10];
+
+            for (int i=results.Length - 1; i>=0; i--)
             {
                 if (i != results.Length - 1 && results[i] != 0 && i != results.Length - 1)
                 {

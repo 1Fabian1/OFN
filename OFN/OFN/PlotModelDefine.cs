@@ -12,7 +12,7 @@ namespace OFN
     class PlotModelDefine
     {
 
-        public static PlotModel ZeroCrossing(int scale)
+        public static PlotModel ZeroCrossingForOFN(int scale)
         {
             var plotModel = new PlotModel();
             plotModel.PlotAreaBorderThickness = new OxyThickness(0.0);
@@ -52,6 +52,64 @@ namespace OFN
             return plotModel;
         }
 
+        public static void ScalePlotOFN(PlotModel plotModel,int scale)
+        {
+            plotModel.Axes.ElementAt(1).Maximum = scale +5;
+            plotModel.Axes.ElementAt(1).Minimum = -scale -5;
+            plotModel.Axes.ElementAt(1).AbsoluteMaximum = scale + 5;
+            plotModel.Axes.ElementAt(1).AbsoluteMinimum = -scale - 5;
+
+        }
+
+        public static PlotModel ZeroCrossingForPolynomial(int scale)
+        {
+            var plotModel = new PlotModel();
+            plotModel.PlotAreaBorderThickness = new OxyThickness(0.0);
+            plotModel.PlotMargins = new OxyThickness(10);
+            plotModel.LegendFontSize = 24;
+             
+            var YlinearAxis = new LinearAxis();
+            YlinearAxis.Maximum = scale;
+            YlinearAxis.Minimum = -scale;
+            YlinearAxis.AbsoluteMaximum = scale*10;
+            YlinearAxis.AbsoluteMinimum = -scale*10;
+            YlinearAxis.PositionAtZeroCrossing = true;
+            YlinearAxis.AxislineStyle = LineStyle.LongDash;
+            YlinearAxis.TickStyle = TickStyle.Crossing;
+            YlinearAxis.TitlePosition = 0;
+            YlinearAxis.Title = "x";
+            YlinearAxis.TitleFontSize = 20;
+
+            plotModel.Axes.Add(YlinearAxis);
+
+            var XlinearAxis = new LinearAxis();
+            XlinearAxis.Maximum = 2;
+            XlinearAxis.Minimum = -2;
+            XlinearAxis.AbsoluteMaximum = 2;
+            XlinearAxis.AbsoluteMinimum = -2;
+            XlinearAxis.Position = AxisPosition.Bottom;
+            XlinearAxis.PositionAtZeroCrossing = true;
+            XlinearAxis.TickStyle = TickStyle.Crossing;
+            XlinearAxis.AxislineStyle = LineStyle.LongDash;
+            XlinearAxis.TitlePosition = 0;
+            XlinearAxis.Title = "y";
+            XlinearAxis.TitleFontSize = 20;
+            XlinearAxis.FilterMaxValue = 1.001;
+            XlinearAxis.FilterMinValue = -0.001;
+            plotModel.Axes.Add(XlinearAxis);
+
+
+            return plotModel;
+        }
+
+        public static void ScalePlotPolynomialPlot(PlotModel plotModel, int scale)
+        {
+            plotModel.Axes.ElementAt(0).Maximum = scale + 5;
+            plotModel.Axes.ElementAt(0).Minimum = -scale - 5;
+            plotModel.Axes.ElementAt(0).AbsoluteMaximum = scale + 5;
+            plotModel.Axes.ElementAt(0).AbsoluteMinimum = -scale - 5;
+        }
+
         public static FunctionSeries DrawFunction(Polynomial polynomial, string title, double discretizationValue)
         {
             Func<double, double> fx = (x) => polynomial.ValueX10 * Math.Pow(x, 10) + polynomial.ValueX9 * Math.Pow(x, 9) + polynomial.ValueX8 * Math.Pow(x, 8) + polynomial.ValueX7 * Math.Pow(x, 7)
@@ -67,11 +125,14 @@ namespace OFN
                 MarkerType = MarkerType.Diamond
                
             };
-
+            
+            
 
 
             return functionSeries;
         }
+
+
 
         public static LineSeries drawFuzzyNumber(FuzzyNumber fuzzyNumber, string title)
         {

@@ -31,7 +31,7 @@ namespace OFN
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
+        bool isPolynomialMode = false;
         FuzzyNumber resultToContinue = new FuzzyNumber();
         //Polynomial values
         private double freeValueA, freeValueB;
@@ -63,7 +63,8 @@ namespace OFN
             this.InitializeComponent();
             comboBoxPartOfPolynomial.Items.Add("Up");
             comboBoxPartOfPolynomial.Items.Add("Down");
-            plotView.Model = PlotModelDefine.ZeroCrossing(30);
+            plotView.Model = PlotModelDefine.ZeroCrossingForOFN(30);
+           
             ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
@@ -76,22 +77,19 @@ namespace OFN
             plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
             int scale = 0;
-
             ParseFNTextBoxes();
-
             Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
-
             FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
+            PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
-            plotView.InvalidatePlot(true);  //refreshes plotView
+            plotView.InvalidatePlot(true);
 
         }
 
@@ -110,8 +108,8 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
-       
+            PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
+
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
@@ -132,7 +130,7 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
+            PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
 
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
@@ -154,7 +152,7 @@ namespace OFN
             resultToContinue = result;
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            plotView.Model = PlotModelDefine.ZeroCrossing(scale + 5);
+            PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
 
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
@@ -231,7 +229,6 @@ namespace OFN
         {
 
             ParsePolynomialTextBoxes();
-           
             Polynomial polynomialResult = new Polynomial();
             Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A, valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
             Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
@@ -267,6 +264,7 @@ namespace OFN
                 }
 
             }
+            
             plotView.Model.InvalidatePlot(true);
         }
 
@@ -309,6 +307,7 @@ namespace OFN
                 }
 
             }
+            //PlotModelDefine.ScalePlotPolynomialPlot(plotView.Model, 250);
             plotView.Model.InvalidatePlot(true);           
 
         }
@@ -353,6 +352,34 @@ namespace OFN
 
             }
             plotView.Model.InvalidatePlot(true);
+        }
+
+        private void ButtonChangeMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (isPolynomialMode)
+            {
+                PolynomialFNGrid.Margin = new Thickness(960, 0, 0, 0);
+                PlotViewGrid.Margin = new Thickness(0, 540, 0, 0);
+                plotView.Width = 1920;
+                plotView.Height = 540;
+                PlotViewGrid.Height = 540;
+                PlotViewGrid.Width = 1920;
+                plotView.Model = PlotModelDefine.ZeroCrossingForOFN(30);
+                isPolynomialMode = false;
+            }
+            else
+            {
+                PolynomialFNGrid.Margin = new Thickness(0, 400, 0, 0);
+                PlotViewGrid.Margin = new Thickness(960, 0, 0, 0);
+                plotView.Width = 960;
+                plotView.Height = 1080;
+                PlotViewGrid.Height = 1080;
+                PlotViewGrid.Width = 960;
+                plotView.Model = PlotModelDefine.ZeroCrossingForPolynomial(30);
+                isPolynomialMode = true;
+            }
+
+
         }
 
         private void ButtonDividePolynomials_Click(object sender, RoutedEventArgs e)

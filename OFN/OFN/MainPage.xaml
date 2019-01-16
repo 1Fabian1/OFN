@@ -9,20 +9,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid" Height="1080px" Width="1920px">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" x:Name="MainGrid">
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <Grid x:Name="NormalFNGrid"  Grid.Row="0" Background="#eefefe">
-            <TextBlock Margin="10,10,0,0"  Text="Ordered Fuzzy Number A" FontSize="15"/>
+
+        <Grid x:Name="NormalFNGrid"  Grid.Row="0" Background="#eefefe" VerticalAlignment="Top" Margin="0,0,960,0" HorizontalAlignment="Left" Height="540" Width="960">
+
             <TextBox Name="textBox1LA" Margin="10,30,10,10" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15" TextChanged="TextBox1LA_TextChanged"/>
             <TextBox Name="textBox2mA" Margin="140,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15" TextChanged="TextBox2mA_TextChanged"/>
             <TextBox Name="textBoxk3pA" Margin="270,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15" TextChanged="TextBoxk3pA_TextChanged"/>
             <TextBox Name="textBox4PA" Margin="400,30,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 4 P" FontSize="15" TextChanged="TextBox4PA_TextChanged"/>
-            <TextBlock Margin="10,110,0,0"  Text="Ordered Fuzzy Number B" FontSize="15"/>
+
             <TextBox Name="textBox1LB" Margin="10,130,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 1 L" FontSize="15" TextChanged="TextBox1LB_TextChanged"/>
             <TextBox Name="textBox2mB" Margin="140,130,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 2 1-" FontSize="15" TextChanged="TextBox2mB_TextChanged"/>
             <TextBox Name="textBox3pB" Margin="270,130,0,0"  HorizontalAlignment="Left" VerticalAlignment="Top" Header="Parametr 3 1+" FontSize="15" TextChanged="TextBox3pB_TextChanged"/>
@@ -38,7 +35,7 @@
         </Grid>
 
 
-        <Grid Name="PolynomialFNGrid" Margin="800,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
+        <Grid Name="PolynomialFNGrid" Margin="960,0,0,0" Background="#eefefe" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="0" Height="540" Width="960">
             <!-- Polynomial A -->
             <TextBlock Name="textBlcokPolynomialHeader" Margin="10,10,0,0" Text="Polynomial Representation"/>
             <ComboBox  Name="comboBoxPartOfPolynomial" Header="Up/Down" Margin="10,30,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="60" Width="100" Visibility="Visible"/>
@@ -61,7 +58,7 @@
                 <TextBox Name="textBoxValueX10A"  Margin="850,180,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^10"  FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
             </Grid>
             <!-- Polynomial B -->
-            <Grid Name="PolynomialBFNGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="0">
+            <Grid Name="PolynomialBFNGrid" VerticalAlignment="Top" Grid.Row="0">
                 <TextBox Name="textBoxDegreeOfPolynomialB" Margin="10,260,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Degree Of Polynomial B" FontSize="15" Height="60" Width="160" TextChanged="TextBoxDegreeOfPolynomialB_TextChanged"/>
 
                 <TextBox Name="textBoxFreeValueB" Margin="200,260,0,0"   HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Free Value"  FontSize="15" Height="60" Width="100"/>
@@ -83,19 +80,14 @@
                 <Button Name="buttonMultiplyPolynomials" Click="ButtonMultiplyPolynomials_Click" Margin="200,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A * B" FontSize="25"/>
                 <Button Name="buttonDividePolynomials" Click="ButtonDividePolynomials_Click" Margin="300,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A / B" FontSize="25"/>
                 <Button Name="buttonClearPlot" Click="ButtonClearPlot_Click" Margin="400,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Clear" FontSize="25"/>
+                <Button Name="buttonChangeMode" Click="ButtonChangeMode_Click" Margin="500,420,0,0" Width="190" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Change Mode" FontSize="25" Background="Aquamarine" BorderBrush="Black"/>
             </Grid>
         </Grid>
 
         <!-- https://www.youtube.com/watch?v=cnkrkB-I-q4  yt do wykresów -->
 
-        <Grid Grid.Row="1">
-            <Canvas Name="CanvaField" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Stretch" Width="10">
-                
-            </Canvas>
-
-            <oxy:PlotView x:Name="plotView" Margin="0,0,0,10" Height="450" Width="1920">
-
-            </oxy:PlotView>
+        <Grid Grid.Row="0" Name="PlotViewGrid" Width="1920" Height="540" Margin="0,540,0,0">
+            <oxy:PlotView x:Name="plotView" Margin="0,0,0,10" Width="1920" Height="540"/>
         </Grid>
 
     </Grid>

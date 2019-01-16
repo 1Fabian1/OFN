@@ -29,6 +29,7 @@ namespace OFN
             for (int i = 2; i <= listOfTextBoxes.Count() - 1; i++)
             {
                 listOfTextBoxes[i].Visibility = Visibility.Collapsed;
+                listOfTextBoxes[i].Text = "";
             }
 
             try
