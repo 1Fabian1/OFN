@@ -205,6 +205,28 @@ namespace OFN
             return result;
         }
 
+        public bool detectFailureChange(FuzzyNumber fuzzyNumber)
+        {
+            bool detector = false;
+            if (!sameSign(fuzzyNumber.Pos1, fuzzyNumber.pos2))
+            {
+                detector = true;
+            }else if (!sameSign(fuzzyNumber.Pos2, fuzzyNumber.pos3))
+            {
+                detector = true;
+            }else if (!sameSign(fuzzyNumber.Pos3, fuzzyNumber.pos4))
+            {
+                detector = true;
+            }
+
+            return detector;
+        }
+
+        private bool sameSign(double num1, double num2)
+        {
+            return num1 >= 0 && num2 >= 0 || num1 < 0 && num2 < 0;
+        }
+
 
     }
 }

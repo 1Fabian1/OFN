@@ -149,15 +149,23 @@ namespace OFN
             FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.divideAB(fuzzyNumberA, fuzzyNumberB);
-            resultToContinue = result;
-            textBoxOutput.Text = "{ " + result.ToString() + "}";
-            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
-            PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
+            if (fuzzyNumberA.detectFailureChange(result))
+            {
+                textBoxOutput.Text = "You can't divide by 0";
+            }
+            else
+            {
+                resultToContinue = result;
+                textBoxOutput.Text = "{ " + result.ToString() + "}";
+                scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
+                PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
 
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
-            plotView.InvalidatePlot(true);
+                plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
+                plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
+                plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
+                plotView.InvalidatePlot(true);
+            }
+          
 
         }
 
@@ -320,8 +328,7 @@ namespace OFN
             Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A, valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
             Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
             polynomialResult = PolynomialAlgebra.multiplyPolynomialAB(polynomialA, polynomialB);
-            Double discretizationValue;
-            Double.TryParse(textBoxDiscretization.Text.ToString(), out discretizationValue);
+            Double.TryParse(textBoxDiscretization.Text.ToString(), out var discretizationValue);
 
             if (comboBoxPartOfPolynomial.SelectedItem != null)
             {
@@ -397,117 +404,45 @@ namespace OFN
         }
         private void TextBox1LA_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBox1LA.Text.ToString());
-            if (test)
-            {
-
-            }
-            else {
-                textBox1LA.Text = "";
-            }
+            
         }
 
         private void TextBox2mA_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBox2mA.Text.ToString());
-            if (test)
-            {
-
-            }
-            else
-            {
-                textBox2mA.Text = "";
-            }
+            
         }
 
         private void TextBoxk3pA_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBoxk3pA.Text.ToString());
-            if (test)
-            {
-
-            }
-            else
-            {
-                textBoxk3pA.Text = "";
-            }
+           
         }
 
         private void TextBox4PA_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBox4PA.Text.ToString());
-            if (test)
-            {
-
-            }
-            else
-            {
-                textBox4PA.Text = "";
-            }
+           
         }
 
         private void TextBoxDiscretization_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBoxDiscretization.Text.ToString());
-            if (test)
-            {
-
-            }
-            else
-            {
-                textBoxDiscretization.Text = "";
-            }
+           
         }
 
         private void TextBox1LB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBox1LB.Text.ToString());
-            if (test)
-            {
-
-            }
-            else
-            {
-                textBox1LB.Text = "";
-            }
+           
         }
 
         private void TextBox2mB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBox2mB.Text.ToString());
-            if (test)
-            {
-
-            }
-            else
-            {
-                textBox2mB.Text = "";
-            }
         }
 
         private void TextBox3pB_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PolynomialTextBoes boes = new PolynomialTextBoes();
-            bool test = boes.checkIfNumber(textBox3pB.Text.ToString());
-            if (test)
-            {
-
-            }
-            else
-            {
-                textBox3pB.Text = "";
-            }
         }
 
         private void TextBox4PB_TextChanged(object sender, TextChangedEventArgs e)
         {
+            /*
             PolynomialTextBoes boes = new PolynomialTextBoes();
             bool test = boes.checkIfNumber(textBox4PB.Text.ToString());
             if (test)
@@ -518,6 +453,7 @@ namespace OFN
             {
                 textBox4PB.Text = "";
             }
+            */
         }
     }
 }
