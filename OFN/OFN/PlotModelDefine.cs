@@ -134,6 +134,37 @@ namespace OFN
 
 
 
+        public static LineSeries drawFuzzyNumber(FuzzyNumber fuzzyNumber, int discreticaztionParameter, string title)
+        {
+            if (discreticaztionParameter == 0 || discreticaztionParameter.Equals(null))
+            {
+                discreticaztionParameter = 10;
+            }
+
+            double jumpUp = 1.0 / discreticaztionParameter;
+            double constJump = jumpUp;
+            double jumpDown = 1.0 - 1.0 / discreticaztionParameter;
+
+            LineSeries lineSeries = new LineSeries();
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos1, 0));
+            foreach (double upper in fuzzyNumber.Up)
+            {
+                lineSeries.Points.Add(new DataPoint(upper,jumpUp));
+                jumpUp += constJump;
+
+            }
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos2, 1));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos3, 1));
+            foreach (double downer in fuzzyNumber.Down)
+            {
+                lineSeries.Points.Add(new DataPoint(downer, jumpDown));
+                jumpDown -= constJump;
+            }
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos4, 0));
+            lineSeries.Title = title;
+            return lineSeries;
+        }
+
         public static LineSeries drawFuzzyNumber(FuzzyNumber fuzzyNumber, string title)
         {
 

@@ -86,9 +86,9 @@ namespace OFN
             textBoxOutput.Text = "{ " + result.ToString() + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
             PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, disPara, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, disPara, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, disPara, "Result"));
             plotView.InvalidatePlot(true);
 
         }
@@ -132,9 +132,9 @@ namespace OFN
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
             PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
 
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
-            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, disPara, "Number A"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, disPara, "Number B"));
+            plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, disPara, "Result"));
             plotView.InvalidatePlot(true);
 
         }
