@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using static System.Double;
 
 namespace OFN
 {
@@ -105,13 +106,12 @@ namespace OFN
         private List<double> CalculateUP(double pos1, double pos2, int discretizationParameter)
         {
             List<double> resultList = new List<double>();
-            double putToList = 0;
-            double jump = 1 / Double.Parse(discretizationParameter.ToString());
+            double jump = 1 / Parse(discretizationParameter.ToString());
             double jumpTemp = jump;
 
             for (int i = 0; i < discretizationParameter; i++)
             {
-                putToList = functionUp(pos1, pos2, jump);
+                var putToList = functionUp(pos1, pos2, jump);
                 resultList.Add(putToList);
                 jump += jumpTemp;
 
@@ -124,14 +124,13 @@ namespace OFN
         private List<double> CalculateDown(double pos3, double pos4, int discretizationParameter)
         {
             List<double> resultList = new List<double>();
-            double putToList = 0;
-            double jump = 1 / Double.Parse(discretizationParameter.ToString());
+            double jump = 1 / Parse(discretizationParameter.ToString());
             double jumpTemp = 1 - jump;
             int i = 0;
 
             for (; i < discretizationParameter; discretizationParameter--)
             {
-                putToList = functionDown(pos3, pos4, jumpTemp);
+                var putToList = functionDown(pos3, pos4, jumpTemp);
                 resultList.Add(putToList);
                 jumpTemp -= jump;
 
@@ -143,7 +142,7 @@ namespace OFN
 
         private double functionUp(double pos1, double pos2, double jump)
         {
-            double y, a, b = 0;
+            double y, a, b;
             a = pos2 - pos1;
             b = pos1;
             y = jump * a + b;
@@ -153,7 +152,7 @@ namespace OFN
 
         private double functionDown(double pos3, double pos4, double jump)
         {
-            double y, a, b = 0;
+            double y, a, b;
             a = pos4 - pos3;
             b = pos4;
             y = -jump * a + b;
@@ -163,8 +162,7 @@ namespace OFN
 
         public int findMaxValueOfFuzzyNumber(FuzzyNumber fuzzyNumberA, FuzzyNumber fuzzyNumberB, FuzzyNumber fuzzyNumberResult)
         {
-            double maxVal = double.MinValue;
-            int result;
+            double maxVal = MinValue;
             List<double> listOfValues = new List<double>();
             listOfValues.Add(fuzzyNumberA.pos1);
             listOfValues.Add(fuzzyNumberA.pos2);
@@ -182,15 +180,14 @@ namespace OFN
             listOfValues.Sort();
             maxVal = listOfValues.Max();
 
-            result = (int)maxVal;
+            var result = (int)maxVal;
 
             return result;
         }
 
         public static int findMaxValueOfFuzzyNumber(FuzzyNumber fuzzyNumber)
         {
-            double maxVal = double.MinValue;
-            int result;
+            double maxVal = MinValue;
             List<double> listOfValues = new List<double>();
             listOfValues.Add(fuzzyNumber.pos1);
             listOfValues.Add(fuzzyNumber.pos2);
@@ -200,7 +197,7 @@ namespace OFN
             listOfValues.Sort();
             maxVal = listOfValues.Max();
 
-            result = (int)maxVal;
+            var result = (int)maxVal;
 
             return result;
         }

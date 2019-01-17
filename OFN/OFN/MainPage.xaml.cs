@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
+using static System.Int32;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -75,21 +76,20 @@ namespace OFN
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             plotView.Model.Series.Clear();
-            FuzzyNumber result = new FuzzyNumber();
-            int scale = 0;
+            FuzzyNumber result;
             ParseFNTextBoxes();
-            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+            TryParse(textBoxDiscretization.Text, out var disPara);
             FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.addAplusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
-            textBoxOutput.Text = "{ " + result.ToString() + "}";
-            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
+            textBoxOutput.Text = "{ " + result + "}";
+            var scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
             PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, disPara, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, disPara, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, disPara, "Result"));
-            plotView.InvalidatePlot(true);
+            plotView.InvalidatePlot();
 
         }
 
@@ -97,45 +97,44 @@ namespace OFN
         private void ButtonSubtract_Click(object sender, RoutedEventArgs e)
         {
             plotView.Model.Series.Clear();
-            FuzzyNumber result = new FuzzyNumber();
+            FuzzyNumber result;
             int scale = 0;
             ParseFNTextBoxes();
 
-            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+            TryParse(textBoxDiscretization.Text, out var disPara);
             FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.subtractAminusB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
-            textBoxOutput.Text = "{ " + result.ToString() + "}";
+            textBoxOutput.Text = "{ " + result + "}";
             scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
             PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
 
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
-            plotView.InvalidatePlot(true);
+            plotView.InvalidatePlot();
 
         }
 
         private void ButtonMultiply_Click(object sender, RoutedEventArgs e)
         {
             plotView.Model.Series.Clear();
-            FuzzyNumber result = new FuzzyNumber();
-            int scale = 0;
+            FuzzyNumber result;
             ParseFNTextBoxes();
-            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+            int disPara; TryParse(textBoxDiscretization.Text, out disPara);
             FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.multiplyAB(fuzzyNumberA, fuzzyNumberB);
             resultToContinue = result;
-            textBoxOutput.Text = "{ " + result.ToString() + "}";
-            scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
+            textBoxOutput.Text = "{ " + result + "}";
+            var scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
             PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
 
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, disPara, "Number A"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, disPara, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, disPara, "Result"));
-            plotView.InvalidatePlot(true);
+            plotView.InvalidatePlot();
 
         }
 
@@ -143,9 +142,9 @@ namespace OFN
         {
             plotView.Model.Series.Clear();
             FuzzyNumber result = new FuzzyNumber();
-            int scale = 0;
+            int scale;
             ParseFNTextBoxes();
-            Int32 disPara; Int32.TryParse(textBoxDiscretization.Text.ToString(), out disPara);
+            TryParse(textBoxDiscretization.Text, out var disPara);
             FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.divideAB(fuzzyNumberA, fuzzyNumberB);
@@ -156,14 +155,14 @@ namespace OFN
             else
             {
                 resultToContinue = result;
-                textBoxOutput.Text = "{ " + result.ToString() + "}";
+                textBoxOutput.Text = "{ " + result + "}";
                 scale = result.findMaxValueOfFuzzyNumber(fuzzyNumberA, fuzzyNumberB, result);
                 PlotModelDefine.ScalePlotOFN(plotView.Model, scale);
 
                 plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberA, "Number A"));
                 plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
                 plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
-                plotView.InvalidatePlot(true);
+                plotView.InvalidatePlot();
             }
           
 

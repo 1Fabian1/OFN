@@ -15,8 +15,6 @@ namespace OFN
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
             int i = 0;
-            double upHelper = 0;
-            double downHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 + fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 + fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 + fuzzyNumberB.Pos3;
@@ -25,7 +23,7 @@ namespace OFN
             //adding UP part - //works 
             foreach (double x in fuzzyNumberA.Up)
             {
-                upHelper = x + fuzzyNumberB.Up[i];
+                var upHelper = x + fuzzyNumberB.Up[i];
                 fuzzy.Up.Add(upHelper);
                 i++;
             }
@@ -33,7 +31,7 @@ namespace OFN
             i = 0;
             foreach (double x in fuzzyNumberA.Down)
             {
-                downHelper = x + fuzzyNumberB.Down[i];
+                var downHelper = x + fuzzyNumberB.Down[i];
                 fuzzy.Down.Add(downHelper);
                 i++;
             }
@@ -45,8 +43,6 @@ namespace OFN
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
             int i = 0;
-            double upHelper = 0;
-            double downHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 - fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 - fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 - fuzzyNumberB.Pos3;
@@ -54,14 +50,14 @@ namespace OFN
 
             foreach (double x in fuzzyNumberA.Up)
             {
-                upHelper = x - fuzzyNumberB.Up[i];
+                var upHelper = x - fuzzyNumberB.Up[i];
                 fuzzy.Up.Add(upHelper);
                 i++;
             }
             i = 0;
             foreach (double x in fuzzyNumberA.Down)
             {
-                downHelper = x - fuzzyNumberB.Down[i];
+                var downHelper = x - fuzzyNumberB.Down[i];
                 fuzzy.Down.Add(downHelper);
                 i++;
             }
@@ -73,22 +69,20 @@ namespace OFN
         {
             FuzzyNumber fuzzy = new FuzzyNumber();
             int i = 0;
-            double upHelper = 0;
-            double downHelper = 0;
             fuzzy.Pos1 = fuzzyNumberA.Pos1 * fuzzyNumberB.Pos1;
             fuzzy.Pos2 = fuzzyNumberA.Pos2 * fuzzyNumberB.Pos2;
             fuzzy.Pos3 = fuzzyNumberA.Pos3 * fuzzyNumberB.Pos3;
             fuzzy.Pos4 = fuzzyNumberA.Pos4 * fuzzyNumberB.Pos4;
             foreach (double x in fuzzyNumberA.Up)
             {
-                upHelper = x * fuzzyNumberB.Up[i];
+                var upHelper = x * fuzzyNumberB.Up[i];
                 fuzzy.Up.Add(upHelper);
                 i++;
             }
             i = 0;
             foreach (double x in fuzzyNumberA.Down)
             {
-                downHelper = x * fuzzyNumberB.Down[i];
+                var downHelper = x * fuzzyNumberB.Down[i];
                 fuzzy.Down.Add(downHelper);
                 i++;
             }
@@ -119,8 +113,6 @@ namespace OFN
             if (checkIfNotZero(fuzzyNumberA) && checkIfNotZero(fuzzyNumberB))
             {
                 int i = 0;
-                double upHelper = 0;
-                double downHelper = 0;
                 fuzzy.Pos1 = fuzzyNumberA.Pos1 / fuzzyNumberB.Pos1;
                 fuzzy.Pos2 = fuzzyNumberA.Pos2 / fuzzyNumberB.Pos2;
                 fuzzy.Pos3 = fuzzyNumberA.Pos3 / fuzzyNumberB.Pos3;
@@ -128,14 +120,14 @@ namespace OFN
 
                 foreach (double x in fuzzyNumberA.Up)
                 {
-                    upHelper = x / fuzzyNumberB.Up[i];
+                    var upHelper = x / fuzzyNumberB.Up[i];
                     fuzzy.Up.Add(upHelper);
                     i++;
                 }
                 i = 0;
                 foreach (double x in fuzzyNumberA.Down)
                 {
-                    downHelper = x / fuzzyNumberB.Down[i];
+                    var downHelper = x / fuzzyNumberB.Down[i];
                     fuzzy.Down.Add(downHelper);
                     i++;
                 }
@@ -151,10 +143,10 @@ namespace OFN
 
         private static bool checkIfNotZero(FuzzyNumber fuzzyNumber)
         {
-            if (fuzzyNumber.Pos1 == 0) return false;
-            else if (fuzzyNumber.Pos2 == 0) return false;
-            else if (fuzzyNumber.Pos3 == 0) return false;
-            else if (fuzzyNumber.Pos4 == 0) return false;
+            if (Math.Abs(fuzzyNumber.Pos1) < 0.000001) return false;
+            else if (Math.Abs(fuzzyNumber.Pos2) < 0.000001) return false;
+            else if (Math.Abs(fuzzyNumber.Pos3) < 0.000001) return false;
+            else if (Math.Abs(fuzzyNumber.Pos4) < 0.000001) return false;
             else return true;
         }
     }
