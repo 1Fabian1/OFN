@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace OFN
 {
-
     //TODO: Multiply and Substract Methods
 
     class PolynomialAlgebra
     {
-
         public static Polynomial addPolynomialAB(Polynomial polynomialA, Polynomial polynomialB)
         {
             Polynomial polynomial = new Polynomial();
@@ -29,7 +27,6 @@ namespace OFN
             polynomial.ValueX10 = polynomialA.ValueX10 + polynomialB.ValueX10;
 
             return polynomial;
-            
         }
 
         public static Polynomial substractPolynomialAB(Polynomial polynomialA, Polynomial polynomialB)
@@ -49,7 +46,6 @@ namespace OFN
             polynomial.ValueX10 = polynomialA.ValueX10 - polynomialB.ValueX10;
 
             return polynomial;
-
         }
 
         public static Polynomial multiplyPolynomialAB(Polynomial polynomialA, Polynomial polynomialB)
@@ -57,7 +53,7 @@ namespace OFN
             Polynomial polynomial = new Polynomial();
             double[] polyA = new double[11];
             double[] polyB = new double[11];
-            double [] results = new double[polyA.Length + polyB.Length];
+            double[] results = new double[polyA.Length + polyB.Length];
 
             polyA[0] = polynomialA.FreeValue;
             polyA[1] = polynomialA.ValueX;
@@ -83,14 +79,14 @@ namespace OFN
             polyB[9] = polynomialB.ValueX9;
             polyB[10] = polynomialB.ValueX10;
 
-            for (int i=0; i < polyA.Length; i++)
+            for (int i = 0; i < polyA.Length; i++)
             {
-                for(int j=0; j < polyB.Length; j++)
+                for (int j = 0; j < polyB.Length; j++)
                 {
                     results[i + j] += polyA[i] * polyB[j];
                 }
-
             }
+
             polynomial.FreeValue = results[0];
             polynomial.ValueX = results[1];
             polynomial.ValueX2 = results[2];
@@ -103,15 +99,13 @@ namespace OFN
             polynomial.ValueX9 = results[9];
             polynomial.ValueX10 = results[10];
 
-            for (int i=results.Length - 1; i>=0; i--)
+            for (int i = results.Length - 1; i >= 0; i--)
             {
                 if (i != results.Length - 1 && results[i] != 0 && i != results.Length - 1)
                 {
                     if (results[i] > 0)
                     {
-
                         polynomial.TextPolynomial += "+";
-
                     }
                 }
 
@@ -182,10 +176,8 @@ namespace OFN
                         default:
                             polynomial.TextPolynomial += results[i].ToString() + " ";
                             break;
-
                     }
                 }
-
             }
 
             StringBuilder stringBuilder = new StringBuilder(polynomial.TextPolynomial);
@@ -195,13 +187,14 @@ namespace OFN
                 {
                     stringBuilder.Remove(0, 1);
                 }
+
                 polynomial.TextPolynomial = stringBuilder.ToString();
             }
 
 
             return polynomial;
         }
-        
+
         public static Polynomial dividePolynomialAB(Polynomial polynomialA, Polynomial polynomialB)
         {
             Polynomial polynomial = new Polynomial();
@@ -243,18 +236,13 @@ namespace OFN
             //
 
 
-
-
-
             for (int i = results.Length - 1; i >= 0; i--)
             {
                 if (i != results.Length - 1 && results[i] != 0 && i != results.Length - 1)
                 {
                     if (results[i] > 0)
                     {
-
                         polynomial.TextPolynomial += "+";
-
                     }
                 }
 
@@ -325,10 +313,8 @@ namespace OFN
                         default:
                             polynomial.TextPolynomial += results[i].ToString() + " ";
                             break;
-
                     }
                 }
-
             }
 
             StringBuilder stringBuilder = new StringBuilder(polynomial.TextPolynomial);
@@ -338,6 +324,7 @@ namespace OFN
                 {
                     stringBuilder.Remove(0, 1);
                 }
+
                 polynomial.TextPolynomial = stringBuilder.ToString();
             }
 
@@ -345,6 +332,15 @@ namespace OFN
             return polynomial;
         }
 
-
+        public double countValueFromFunction(Polynomial polynomial, double valueY)
+        {
+            //result = valueY + polynomial.ValueX * valueY + Math.Pow(polynomial.ValueX2, 2) * valueY + Math.Pow(polynomial.ValueX3,3)* valueY;
+            var result = Math.Pow(valueY, 10) * polynomial.ValueX10 + Math.Pow(valueY, 9) * polynomial.ValueX9 +
+                            Math.Pow(valueY, 8) * polynomial.ValueX8 + Math.Pow(valueY, 7) * polynomial.ValueX7 +
+                            Math.Pow(valueY, 6) * polynomial.ValueX6 + Math.Pow(valueY, 5) * polynomial.ValueX5 +
+                            Math.Pow(valueY, 4) * polynomial.ValueX4 + Math.Pow(valueY, 3) * polynomial.ValueX3 +
+                            Math.Pow(valueY, 2) * polynomial.ValueX2 + valueY * polynomial.ValueX + polynomial.FreeValue;
+            return result;
+        }
     }
 }

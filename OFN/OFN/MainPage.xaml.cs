@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -33,7 +34,9 @@ namespace OFN
     public sealed partial class MainPage : Page
     {
         bool isPolynomialMode = false;
+
         FuzzyNumber resultToContinue = new FuzzyNumber();
+
         //Polynomial values
         private double freeValueA, freeValueB;
         private double valueXA, valueXB;
@@ -59,18 +62,19 @@ namespace OFN
 
         List<Series> serie = new List<Series>();
 
+        string polynomialUp = "", polynomialDown = "";
+
         public MainPage()
         {
             this.InitializeComponent();
             comboBoxPartOfPolynomial.Items.Add("Up");
             comboBoxPartOfPolynomial.Items.Add("Down");
             plotView.Model = PlotModelDefine.ZeroCrossingForOFN(30);
-           
+
             ApplicationView.GetForCurrentView().TryEnterFullScreenMode();
             var bounds = ApplicationView.GetForCurrentView().VisibleBounds;
             double scaleFactor = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
             var size = new Size(bounds.Width * scaleFactor, bounds.Height * scaleFactor);
-
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -90,7 +94,6 @@ namespace OFN
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, disPara, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, disPara, "Result"));
             plotView.InvalidatePlot();
-
         }
 
 
@@ -114,7 +117,6 @@ namespace OFN
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
             plotView.InvalidatePlot();
-
         }
 
         private void ButtonMultiply_Click(object sender, RoutedEventArgs e)
@@ -122,7 +124,8 @@ namespace OFN
             plotView.Model.Series.Clear();
             FuzzyNumber result;
             ParseFNTextBoxes();
-            int disPara; TryParse(textBoxDiscretization.Text, out disPara);
+            int disPara;
+            TryParse(textBoxDiscretization.Text, out disPara);
             FuzzyNumber fuzzyNumberA = new FuzzyNumber(a1, a2, a3, a4, disPara);
             FuzzyNumber fuzzyNumberB = new FuzzyNumber(b1, b2, b3, b4, disPara);
             result = FNAlgebra.multiplyAB(fuzzyNumberA, fuzzyNumberB);
@@ -135,7 +138,6 @@ namespace OFN
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(fuzzyNumberB, disPara, "Number B"));
             plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, disPara, "Result"));
             plotView.InvalidatePlot();
-
         }
 
         private void ButtonDivide_Click(object sender, RoutedEventArgs e)
@@ -164,13 +166,10 @@ namespace OFN
                 plotView.Model.Series.Add(PlotModelDefine.drawFuzzyNumber(result, "Result"));
                 plotView.InvalidatePlot();
             }
-          
-
         }
 
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
-
             textBox1LA.Text = "";
             textBox2mA.Text = "";
             textBoxk3pA.Text = "";
@@ -182,7 +181,6 @@ namespace OFN
             textBoxOutput.Text = "";
             textBoxDiscretization.Text = "";
             plotView.Model.Series.Clear();
-
         }
 
         private void ButtonCountFromResult_Click(object sender, RoutedEventArgs e)
@@ -204,19 +202,31 @@ namespace OFN
             PolynomialTextBoes polynomial = new PolynomialTextBoes();
             polynomial.CreateTextBoxes(textBoxDegreeOfPolynomialB, PolynomialBFNGrid);
         }
+
         public void ParsePolynomialTextBoxes()
         {
-            Double.TryParse(textBoxFreeValueA.Text, out freeValueA); Double.TryParse(textBoxFreeValueB.Text, out freeValueB);
-            Double.TryParse(textBoxValueXA.Text, out valueXA); Double.TryParse(textBoxValueXB.Text, out valueXB);
-            Double.TryParse(textBoxValueX2A.Text, out valueX2A); Double.TryParse(textBoxValueX2B.Text, out valueX2B);
-            Double.TryParse(textBoxValueX3A.Text, out valueX3A); Double.TryParse(textBoxValueX3B.Text, out valueX3B);
-            Double.TryParse(textBoxValueX4A.Text, out valueX4A); Double.TryParse(textBoxValueX4B.Text, out valueX4B);
-            Double.TryParse(textBoxValueX5A.Text, out valueX5A); Double.TryParse(textBoxValueX5B.Text, out valueX5B);
-            Double.TryParse(textBoxValueX6A.Text, out valueX6A); Double.TryParse(textBoxValueX6B.Text, out valueX6B);
-            Double.TryParse(textBoxValueX7A.Text, out valueX7A); Double.TryParse(textBoxValueX7B.Text, out valueX7B);
-            Double.TryParse(textBoxValueX8A.Text, out valueX8A); Double.TryParse(textBoxValueX8B.Text, out valueX8B);
-            Double.TryParse(textBoxValueX9A.Text, out valueX9A); Double.TryParse(textBoxValueX9B.Text, out valueX9B);
-            Double.TryParse(textBoxValueX10A.Text, out valueX10A); Double.TryParse(textBoxValueX10B.Text, out valueX10B);
+            Double.TryParse(textBoxFreeValueA.Text, out freeValueA);
+            Double.TryParse(textBoxFreeValueB.Text, out freeValueB);
+            Double.TryParse(textBoxValueXA.Text, out valueXA);
+            Double.TryParse(textBoxValueXB.Text, out valueXB);
+            Double.TryParse(textBoxValueX2A.Text, out valueX2A);
+            Double.TryParse(textBoxValueX2B.Text, out valueX2B);
+            Double.TryParse(textBoxValueX3A.Text, out valueX3A);
+            Double.TryParse(textBoxValueX3B.Text, out valueX3B);
+            Double.TryParse(textBoxValueX4A.Text, out valueX4A);
+            Double.TryParse(textBoxValueX4B.Text, out valueX4B);
+            Double.TryParse(textBoxValueX5A.Text, out valueX5A);
+            Double.TryParse(textBoxValueX5B.Text, out valueX5B);
+            Double.TryParse(textBoxValueX6A.Text, out valueX6A);
+            Double.TryParse(textBoxValueX6B.Text, out valueX6B);
+            Double.TryParse(textBoxValueX7A.Text, out valueX7A);
+            Double.TryParse(textBoxValueX7B.Text, out valueX7B);
+            Double.TryParse(textBoxValueX8A.Text, out valueX8A);
+            Double.TryParse(textBoxValueX8B.Text, out valueX8B);
+            Double.TryParse(textBoxValueX9A.Text, out valueX9A);
+            Double.TryParse(textBoxValueX9B.Text, out valueX9B);
+            Double.TryParse(textBoxValueX10A.Text, out valueX10A);
+            Double.TryParse(textBoxValueX10B.Text, out valueX10B);
         }
 
         public void ParseFNTextBoxes()
@@ -229,16 +239,18 @@ namespace OFN
             Double.TryParse(textBox2mB.Text.ToString(), out b2);
             Double.TryParse(textBox3pB.Text.ToString(), out b3);
             Double.TryParse(textBox4PB.Text.ToString(), out b4);
-
         }
 
         private void ButtonAddPolynomials_Click(object sender, RoutedEventArgs e)
         {
-
+            
             ParsePolynomialTextBoxes();
             Polynomial polynomialResult = new Polynomial();
-            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A, valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
-            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
+            PolynomialAlgebra algebra = new PolynomialAlgebra();
+            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A,
+                valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
+            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B,
+                valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
             polynomialResult = PolynomialAlgebra.addPolynomialAB(polynomialA, polynomialB);
             Double discretizationValue;
             Double.TryParse(textBoxDiscretization.Text.ToString(), out discretizationValue);
@@ -254,8 +266,12 @@ namespace OFN
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
+
                     textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up",
+                        discretizationValue));
+
+                    countUpForAandB(algebra, polynomialA, polynomialB, polynomialResult);
                 }
                 else
                 {
@@ -266,22 +282,32 @@ namespace OFN
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
-                    textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down", discretizationValue));
-                }
 
+                    textBoxResultDownPolynomail.Text = polynomialResult.ToString();
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down",
+                        discretizationValue));
+
+                    countDownforAandB(algebra, polynomialA, polynomialB, polynomialResult);
+                }
             }
-            
+
+            representResult();
+
             plotView.Model.InvalidatePlot(true);
         }
+
+      
 
         private void ButtonSubstractPolynomials_Click(object sender, RoutedEventArgs e)
         {
             ParsePolynomialTextBoxes();
 
             Polynomial polynomialResult = new Polynomial();
-            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A, valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
-            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
+            PolynomialAlgebra algebra = new PolynomialAlgebra();
+            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A,
+                valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
+            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B,
+                valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
             polynomialResult = PolynomialAlgebra.substractPolynomialAB(polynomialA, polynomialB);
             Double discretizationValue;
             Double.TryParse(textBoxDiscretization.Text.ToString(), out discretizationValue);
@@ -297,8 +323,12 @@ namespace OFN
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
+
                     textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up",
+                        discretizationValue));
+
+                    countUpForAandB(algebra, polynomialA, polynomialB, polynomialResult);
                 }
                 else
                 {
@@ -309,14 +339,18 @@ namespace OFN
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
-                    textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down", discretizationValue));
+
+                    textBoxResultDownPolynomail.Text = polynomialResult.ToString();
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down",
+                        discretizationValue));
+
+                    countDownforAandB(algebra, polynomialA, polynomialB, polynomialResult);
                 }
-
             }
-            //PlotModelDefine.ScalePlotPolynomialPlot(plotView.Model, 250);
-            plotView.Model.InvalidatePlot(true);           
 
+            representResult();
+            //PlotModelDefine.ScalePlotPolynomialPlot(plotView.Model, 250);
+            plotView.Model.InvalidatePlot(true);
         }
 
         private void ButtonMultiplyPolynomials_Click(object sender, RoutedEventArgs e)
@@ -324,8 +358,11 @@ namespace OFN
             ParsePolynomialTextBoxes();
 
             Polynomial polynomialResult = new Polynomial();
-            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A, valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
-            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B, valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
+            PolynomialAlgebra algebra = new PolynomialAlgebra();
+            Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A,
+                valueX6A, valueX7A, valueX8A, valueX9A, valueX10A);
+            Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B,
+                valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
             polynomialResult = PolynomialAlgebra.multiplyPolynomialAB(polynomialA, polynomialB);
             Double.TryParse(textBoxDiscretization.Text.ToString(), out var discretizationValue);
 
@@ -340,8 +377,12 @@ namespace OFN
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
+
                     textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up",
+                        discretizationValue));
+
+                    countUpForAandB(algebra, polynomialA, polynomialB, polynomialResult);
                 }
                 else
                 {
@@ -352,11 +393,16 @@ namespace OFN
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
-                    textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down", discretizationValue));
-                }
 
+                    textBoxResultDownPolynomail.Text = polynomialResult.ToString();
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down",
+                        discretizationValue));
+
+                    countDownforAandB(algebra, polynomialA, polynomialB, polynomialResult);
+                }
             }
+            representResult();
+
             plotView.Model.InvalidatePlot(true);
         }
 
@@ -384,8 +430,6 @@ namespace OFN
                 plotView.Model = PlotModelDefine.ZeroCrossingForPolynomial(30);
                 isPolynomialMode = true;
             }
-
-
         }
 
         private void ButtonDividePolynomials_Click(object sender, RoutedEventArgs e)
@@ -400,35 +444,70 @@ namespace OFN
         {
             plotView.Model.Series.Clear();
             plotView.Model.InvalidatePlot(true);
+
         }
+
+        private void representResult()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(polynomialUp);
+            builder.Append(" ");
+            builder.Append(polynomialDown);
+            textBoxOutput.Text = builder.ToString();
+        }
+
+        private void countDownforAandB(PolynomialAlgebra algebra, Polynomial polynomialA, Polynomial polynomialB,
+            Polynomial polynomialResult)
+        {
+            a3 = algebra.countValueFromFunction(polynomialA, 0);
+            a4 = algebra.countValueFromFunction(polynomialA, 1);
+            b3 = algebra.countValueFromFunction(polynomialB, 0);
+            b4 = algebra.countValueFromFunction(polynomialB, 1);
+            textBoxk3pA.Text = a3.ToString();
+            textBox4PA.Text = a4.ToString();
+            textBox3pB.Text = b3.ToString();
+            textBox4PB.Text = b4.ToString();
+            polynomialDown = algebra.countValueFromFunction(polynomialResult, 0).ToString() + " " +
+                             algebra.countValueFromFunction(polynomialResult, 1).ToString();
+        }
+
+        private void countUpForAandB(PolynomialAlgebra algebra, Polynomial polynomialA, Polynomial polynomialB,
+            Polynomial polynomialResult)
+        {
+            a1 = algebra.countValueFromFunction(polynomialA, 0);
+            a2 = algebra.countValueFromFunction(polynomialA, 1);
+            b1 = algebra.countValueFromFunction(polynomialB, 0);
+            b2 = algebra.countValueFromFunction(polynomialB, 1);
+            textBox1LA.Text = a1.ToString();
+            textBox2mA.Text = a2.ToString();
+            textBox1LB.Text = b1.ToString();
+            textBox2mB.Text = b2.ToString();
+            polynomialUp = algebra.countValueFromFunction(polynomialResult, 0).ToString() + " " +
+                           algebra.countValueFromFunction(polynomialResult, 1).ToString();
+        }
+
         private void TextBox1LA_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
         }
 
         private void TextBox2mA_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
         }
 
         private void TextBoxk3pA_TextChanged(object sender, TextChangedEventArgs e)
         {
-           
         }
 
         private void TextBox4PA_TextChanged(object sender, TextChangedEventArgs e)
         {
-           
         }
 
         private void TextBoxDiscretization_TextChanged(object sender, TextChangedEventArgs e)
         {
-           
         }
 
         private void TextBox1LB_TextChanged(object sender, TextChangedEventArgs e)
         {
-           
         }
 
         private void TextBox2mB_TextChanged(object sender, TextChangedEventArgs e)
