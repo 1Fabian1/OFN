@@ -19,7 +19,6 @@ namespace OFN
         private readonly double VALUE_OF_ONE = 200;
         private double scaleClass = 0;
 
-        public ManualDrawer() { }
 
         //draws starting lines of OX Axis
         public void drawAxis(Canvas canvas)

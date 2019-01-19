@@ -6,12 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Security.Cryptography.Core;
 
 namespace OFN
 {
     class PlotModelDefine
     {
-
+        private static readonly double FLOOR = 0.0;
+        private static readonly double CEILING = 1.0;
         public static PlotModel ZeroCrossingForOFN(int scale)
         {
             var plotModel = new PlotModel();
@@ -136,31 +138,32 @@ namespace OFN
 
         public static LineSeries drawFuzzyNumber(FuzzyNumber fuzzyNumber, int discreticaztionParameter, string title)
         {
-            if (discreticaztionParameter == 0 || discreticaztionParameter.Equals(null))
+            
+            if (Math.Abs(discreticaztionParameter - FLOOR) < 0.000001 || discreticaztionParameter.Equals(null))
             {
                 discreticaztionParameter = 10;
             }
 
-            double jumpUp = 1.0 / discreticaztionParameter;
+            double jumpUp = CEILING / discreticaztionParameter;
             double constJump = jumpUp;
-            double jumpDown = 1.0 - 1.0 / discreticaztionParameter;
+            double jumpDown = CEILING - CEILING / discreticaztionParameter;
 
             LineSeries lineSeries = new LineSeries();
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos1, 0));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos1, FLOOR));
             foreach (double upper in fuzzyNumber.Up)
             {
                 lineSeries.Points.Add(new DataPoint(upper,jumpUp));
                 jumpUp += constJump;
 
             }
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos2, 1));
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos3, 1));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos2, CEILING));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos3, CEILING));
             foreach (double downer in fuzzyNumber.Down)
             {
                 lineSeries.Points.Add(new DataPoint(downer, jumpDown));
                 jumpDown -= constJump;
             }
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos4, 0));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos4, FLOOR));
             lineSeries.Title = title;
             return lineSeries;
         }
@@ -169,10 +172,10 @@ namespace OFN
         {
 
             LineSeries lineSeries = new LineSeries();
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos1, 0));
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos2, 1));
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos3, 1));
-            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos4, 0));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos1, FLOOR));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos2, CEILING));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos3, CEILING));
+            lineSeries.Points.Add(new DataPoint(fuzzyNumber.Pos4, FLOOR));
             lineSeries.Title = title;
             return lineSeries;
         }
