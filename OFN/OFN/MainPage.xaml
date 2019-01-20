@@ -73,10 +73,10 @@
                 <TextBox Name="textBoxValueX10B"  Margin="850,340,0,0"  HorizontalAlignment="Left"     VerticalAlignment="Top" Header="Value x^10"  FontSize="15" Height="60" Width="100"  Visibility="Collapsed"/>
             </Grid>
             <Grid Name="PolynomialButtons"  Grid.Row="0">
-                <Button Name="buttonAddPolynomials" Click="ButtonAddPolynomials_Click" Margin="0,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A + B" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Button Name="buttonSubstractPolynomials" Click="ButtonSubstractPolynomials_Click" Margin="100,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A - B" FontSize="25"/>
-                <Button Name="buttonMultiplyPolynomials" Click="ButtonMultiplyPolynomials_Click" Margin="200,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A * B" FontSize="25"/>
-                <Button Name="buttonDividePolynomials" Click="ButtonDividePolynomials_Click" Margin="300,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A / B" FontSize="25"/>
+                <Button Name="buttonAddPolynomials" Click="ButtonAddPolynomials_Click" IsEnabled="False" Margin="0,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A + B" FontSize="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button Name="buttonSubstractPolynomials" Click="ButtonSubstractPolynomials_Click" IsEnabled="False" Margin="100,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A - B" FontSize="25"/>
+                <Button Name="buttonMultiplyPolynomials" Click="ButtonMultiplyPolynomials_Click" IsEnabled="False" Margin="200,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A * B" FontSize="25"/>
+                <Button Name="buttonDividePolynomials" Click="ButtonDividePolynomials_Click" IsEnabled="False" Margin="300,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="A / B" FontSize="25"/>
                 <Button Name="buttonClearPlot" Click="ButtonClearPlot_Click" Margin="400,420,0,0" Width="90" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Clear" FontSize="25"/>
                 <Button Name="buttonChangeMode" Click="ButtonChangeMode_Click" Margin="500,420,0,0" Width="190" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Change Mode" FontSize="25" Background="Aquamarine" BorderBrush="Black"/>
             </Grid>

@@ -73,8 +73,8 @@ namespace OFN
             var YlinearAxis = new LinearAxis();
             YlinearAxis.Maximum = scale;
             YlinearAxis.Minimum = -scale;
-            YlinearAxis.AbsoluteMaximum = scale*10;
-            YlinearAxis.AbsoluteMinimum = -scale*10;
+            YlinearAxis.AbsoluteMaximum = scale;
+            YlinearAxis.AbsoluteMinimum = -scale;
             YlinearAxis.PositionAtZeroCrossing = true;
             YlinearAxis.AxislineStyle = LineStyle.LongDash;
             YlinearAxis.TickStyle = TickStyle.Crossing;
@@ -85,10 +85,10 @@ namespace OFN
             plotModel.Axes.Add(YlinearAxis);
 
             var XlinearAxis = new LinearAxis();
-            XlinearAxis.Maximum = 2;
-            XlinearAxis.Minimum = -2;
-            XlinearAxis.AbsoluteMaximum = 2;
-            XlinearAxis.AbsoluteMinimum = -2;
+            XlinearAxis.Maximum = 1.25;
+            XlinearAxis.Minimum = -0.5;
+            XlinearAxis.AbsoluteMaximum = 1.25;
+            XlinearAxis.AbsoluteMinimum = -0.5;
             XlinearAxis.Position = AxisPosition.Bottom;
             XlinearAxis.PositionAtZeroCrossing = true;
             XlinearAxis.TickStyle = TickStyle.Crossing;
