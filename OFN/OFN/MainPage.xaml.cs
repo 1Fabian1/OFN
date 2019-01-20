@@ -379,7 +379,7 @@ namespace OFN
         private void ButtonSubstractPolynomials_Click(object sender, RoutedEventArgs e)
         {
             ParsePolynomialTextBoxes();
-
+            PolynomialAlgebra polynomialAlgebra = new PolynomialAlgebra();
             Polynomial polynomialResult = new Polynomial();
             PolynomialAlgebra algebra = new PolynomialAlgebra();
             Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A,
@@ -396,45 +396,120 @@ namespace OFN
                 {
                     for (int i = 0; i < plotView.Model.Series.Count; i++)
                     {
-                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up"))
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up(Fa+Fb)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up(Fa)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up(Fb)"))
                         {
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
-
+                    upValuesOfPolynomials.Clear();
                     textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up",
-                        discretizationValue));
-
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up(Fa+Fb)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialA, "Up(Fa)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialB, "Up(Fb)", discretizationValue));
                     countUpForAandB(algebra, polynomialA, polynomialB, polynomialResult);
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 1));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 1));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 1));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 0));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 0));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 0));
+                    upValuesOfPolynomials.Sort();
                 }
                 else
                 {
                     for (int i = 0; i < plotView.Model.Series.Count; i++)
                     {
-                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down"))
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down(Ga+Gb)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down(Ga)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down(Gb)"))
                         {
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
-
+                    downValuesOfPolynomials.Clear();
                     textBoxResultDownPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down",
-                        discretizationValue));
-
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down(Ga+Gb)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialA, "Down(Ga)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialB, "Down(Gb)", discretizationValue));
                     countDownforAandB(algebra, polynomialA, polynomialB, polynomialResult);
+
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 1));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 1));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 1));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 0));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 0));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 0));
+                    downValuesOfPolynomials.Sort();
                 }
             }
 
+            if (upValuesOfPolynomials.Count > 0 && downValuesOfPolynomials.Count > 0)
+            {
+                if (upValuesOfPolynomials[5] >= downValuesOfPolynomials[5])
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = upValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = upValuesOfPolynomials[5] + 5;
+                }
+                else
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = downValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = downValuesOfPolynomials[5] + 5;
+                }
+
+
+                if (upValuesOfPolynomials[0] <= downValuesOfPolynomials[0])
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = upValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = upValuesOfPolynomials[0] - 5;
+                }
+                else
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = downValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = downValuesOfPolynomials[0] - 5;
+                }
+            }
+            else
+            {
+                if (upValuesOfPolynomials.Count > 0)
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = upValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = upValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = upValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = upValuesOfPolynomials[0] - 5;
+                }
+                else if (downValuesOfPolynomials.Count > 0)
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = downValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = downValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = downValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = downValuesOfPolynomials[0] - 5;
+                }
+            }
+
+
             representResult();
-            //PlotModelDefine.ScalePlotPolynomialPlot(plotView.Model, 250);
-            plotView.Model.InvalidatePlot(true);
+            plotView.InvalidatePlot(true);
+
         }
 
         private void ButtonMultiplyPolynomials_Click(object sender, RoutedEventArgs e)
         {
             ParsePolynomialTextBoxes();
-
+            PolynomialAlgebra polynomialAlgebra = new PolynomialAlgebra();
             Polynomial polynomialResult = new Polynomial();
             PolynomialAlgebra algebra = new PolynomialAlgebra();
             Polynomial polynomialA = new Polynomial(freeValueA, valueXA, valueX2A, valueX3A, valueX4A, valueX5A,
@@ -442,7 +517,8 @@ namespace OFN
             Polynomial polynomialB = new Polynomial(freeValueB, valueXB, valueX2B, valueX3B, valueX4B, valueX5B,
                 valueX6B, valueX7B, valueX8B, valueX9B, valueX10B);
             polynomialResult = PolynomialAlgebra.multiplyPolynomialAB(polynomialA, polynomialB);
-            Double.TryParse(textBoxDiscretization.Text.ToString(), out var discretizationValue);
+            Double discretizationValue;
+            Double.TryParse(textBoxDiscretization.Text.ToString(), out discretizationValue);
 
             if (comboBoxPartOfPolynomial.SelectedItem != null)
             {
@@ -450,38 +526,114 @@ namespace OFN
                 {
                     for (int i = 0; i < plotView.Model.Series.Count; i++)
                     {
-                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up"))
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up(Fa+Fb)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up(Fa)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Up(Fb)"))
                         {
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
-
+                    upValuesOfPolynomials.Clear();
                     textBoxResultUpPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up",
-                        discretizationValue));
-
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Up(Fa+Fb)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialA, "Up(Fa)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialB, "Up(Fb)", discretizationValue));
                     countUpForAandB(algebra, polynomialA, polynomialB, polynomialResult);
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 1));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 1));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 1));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 0));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 0));
+                    upValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 0));
+                    upValuesOfPolynomials.Sort();
                 }
                 else
                 {
                     for (int i = 0; i < plotView.Model.Series.Count; i++)
                     {
-                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down"))
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down(Ga+Gb)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down(Ga)"))
+                        {
+                            plotView.Model.Series.RemoveAt(i);
+                        }
+                        if (plotView.Model.Series.ElementAt(i).Title.Equals("Down(Gb)"))
                         {
                             plotView.Model.Series.RemoveAt(i);
                         }
                     }
-
+                    downValuesOfPolynomials.Clear();
                     textBoxResultDownPolynomail.Text = polynomialResult.ToString();
-                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down",
-                        discretizationValue));
-
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialResult, "Down(Ga+Gb)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialA, "Down(Ga)", discretizationValue));
+                    plotView.Model.Series.Add(PlotModelDefine.DrawFunction(polynomialB, "Down(Gb)", discretizationValue));
                     countDownforAandB(algebra, polynomialA, polynomialB, polynomialResult);
+
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 1));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 1));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 1));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialA, 0));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialB, 0));
+                    downValuesOfPolynomials.Add(polynomialAlgebra.countValueFromFunction(polynomialResult, 0));
+                    downValuesOfPolynomials.Sort();
                 }
             }
-            representResult();
 
-            plotView.Model.InvalidatePlot(true);
+            if (upValuesOfPolynomials.Count > 0 && downValuesOfPolynomials.Count > 0)
+            {
+                if (upValuesOfPolynomials[5] >= downValuesOfPolynomials[5])
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = upValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = upValuesOfPolynomials[5] + 5;
+                }
+                else
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = downValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = downValuesOfPolynomials[5] + 5;
+                }
+
+
+                if (upValuesOfPolynomials[0] <= downValuesOfPolynomials[0])
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = upValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = upValuesOfPolynomials[0] - 5;
+                }
+                else
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = downValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = downValuesOfPolynomials[0] - 5;
+                }
+            }
+            else
+            {
+                if (upValuesOfPolynomials.Count > 0)
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = upValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = upValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = upValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = upValuesOfPolynomials[0] - 5;
+                }
+                else if (downValuesOfPolynomials.Count > 0)
+                {
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMaximum = downValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).Maximum = downValuesOfPolynomials[5] + 5;
+                    plotView.Model.Axes.ElementAt(0).AbsoluteMinimum = downValuesOfPolynomials[0] - 5;
+                    plotView.Model.Axes.ElementAt(0).Minimum = downValuesOfPolynomials[0] - 5;
+                }
+            }
+
+
+            representResult();
+            plotView.InvalidatePlot(true);
+
         }
 
         private void ButtonChangeMode_Click(object sender, RoutedEventArgs e)
@@ -558,6 +710,7 @@ namespace OFN
             a4 = algebra.countValueFromFunction(polynomialA, 1);
             b3 = algebra.countValueFromFunction(polynomialB, 0);
             b4 = algebra.countValueFromFunction(polynomialB, 1);
+            
             textBoxk3pA.Text = a3.ToString();
             textBox4PA.Text = a4.ToString();
             textBox3pB.Text = b3.ToString();
